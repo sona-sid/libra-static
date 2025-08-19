@@ -1,15 +1,91 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; }
+body { font-family: Arial, sans-serif; }
+/*  color: #333; line-height: 1.6; */
 
 /* Navbar */
 .navbar {
   display: flex; justify-content: space-between; align-items: center;
   padding: 15px 40px; background: #fff; position: sticky; top: 0; z-index: 100;
 }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover {
+  color: #ff0000;
+}
+
+.logo img {
+  height: 50px;
+}
+
 .navbar ul { list-style: none; display: flex; gap: 20px; }
 .navbar a { text-decoration: none; color: #333; font-weight: bold; }
 .btn-primary { background: red; color: #fff; padding: 10px 20px; border-radius: 5px; }
+
+/* Header Background */
+.header-bg {
+  background: url("assets/images/header-bg.png") no-repeat center/cover;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding: 20px 40px;
+}
+/* Banner Section */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 0;
+}
+.banner-left img {
+  max-width: 400px;
+  border-radius: 15px;
+}
+
+.banner-right {
+  max-width: 500px;
+  text-align: left;
+}
+
+.banner-right h1 {
+  font-size: 48px;
+  color: #fff;
+  line-height: 1.2;
+}
+.banner-right h1 span {
+  color: #ff0000;
+}
+
+.banner-right p {
+  margin: 20px 0;
+  font-size: 18px;
+  color: #ddd;
+}
+.btn-quote {
+  display: inline-block;
+  padding: 12px 25px;
+  background: red;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-quote:hover {
+  background: #cc0000;
+}
+
 
 /* Hero */
 .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px; background: #eee; }
@@ -32,6 +108,12 @@ footer a { color: #333; text-decoration: none; }
 footer input { padding: 10px; width: 100%; margin-bottom: 10px; }
 footer button { padding: 10px; background: red; color: #fff; border: none; border-radius: 5px; }
 
+/* Responsive */
+@media (max-width: 900px) {
+  .banner { flex-direction: column; text-align: center; }
+  .banner-left img { max-width: 300px; }
+  .banner-right { margin-top: 20px; }
+}
 @media (max-width: 768px) {
   .hero { flex-direction: column; text-align: center; }
   .grid { grid-template-columns: 1fr; }
