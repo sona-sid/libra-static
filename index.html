@@ -12,8 +12,8 @@
   </head>
   <body class="inter">
     <!-- hero section -->
-    <section class="hero-container">
-      <div class="hero-content">
+    <section class="hero-container ">
+      <div class="hero-content container">
         <!-- Left Side: Image -->
         <div class="hero-image">
           <img src="./assets/images/hero_image.png" alt="Creative Print" />
@@ -23,13 +23,19 @@
         <div class="hero-text">
           <!-- Navbar -->
           <div class="navbar">
+            <!-- Hamburger -->
+            <div class="hamburger" id="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
             <ul class="bebas">
               <li><a href="#">Home</a></li>
               <li><a href="#">About Us</a></li>
               <li><a href="#">Portfolio</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
-            <div class="">
+            <div class="nav-logobox">
               <img
                 src="./assets/images/logo_small.png"
                 alt="Logo"
@@ -242,7 +248,7 @@
     </section>
 
     <!-- technologies -->
-    <section class="technologies_section">
+    <section class="technologies_section container">
       <!-- Brain image -->
       <div class="human_brain">
         <img
@@ -368,35 +374,6 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script>
-      const swiper = new Swiper(".printing-slider .swiper", {
-        slidesPerView: "auto",
-        centeredSlides: true,
-        spaceBetween: 24,
-        loop: true,
-        loopedSlides: 4,
-        loopAdditionalSlides: 4,
-        grabCursor: true,
-        initialSlide: 1, // 👈 start at 2nd slide (0-based index)
-        pagination: {
-          el: ".printing-slider .swiper-pagination",
-          clickable: true,
-          type: "bullets",
-          renderBullet: function (index, className) {
-            if (index < 3) {
-              return '<span class="' + className + '"></span>';
-            }
-            return "";
-          },
-        },
-        on: {
-          init: function () {
-            // force update active bullet
-            this.pagination.update();
-          },
-        },
-      });
-    </script>
+    <script src="./script.js"></script>
   </body>
 </html>
