@@ -892,7 +892,8 @@ video {
 
     .section2,
     .container {
-        max-width: 1536px;
+        /* max-width: 1536px;*/
+	max-width: 97%;
     }
 }
 
