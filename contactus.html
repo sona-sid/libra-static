@@ -62,17 +62,30 @@
               0484 4061415
             </li>
             <li>
-              <span> <img src="./assets/icons/mail.png" style="width: 23px; height: 19px;"/></span>
+              <span>
+                <img
+                  src="./assets/icons/mail.png"
+                  style="width: 23px; height: 19px"
+              /></span>
               libradesign@gmail.com
             </li>
             <li>
-              <span> <img src="./assets/icons/location.png" style="width: 19px; height: 25px;"/></span> 372 A,<br />
+              <span>
+                <img
+                  src="./assets/icons/location.png"
+                  style="width: 19px; height: 25px"
+              /></span>
+              372 A,<br />
               Libra Tower, St.Francis Xavier Church Road,<br />
               Kaloor, Kochi - 682 018
             </li>
             <li style="margin-bottom: 110px">
-              <span> <img src="./assets/icons/clock.png" style="width: 24px; height: 24px;" /></span> Working
-              Hours: Mon–Sat,<br />
+              <span>
+                <img
+                  src="./assets/icons/clock.png"
+                  style="width: 24px; height: 24px"
+              /></span>
+              Working Hours: Mon–Sat,<br />
               9:00 AM – 7:00 PM
             </li>
           </ul>
@@ -148,9 +161,47 @@
             <div class="msg-btn">
               <button type="submit" class="btn-send">Send Message</button>
             </div>
+            <div class="letter_send">
+              <img src="./assets/images/letter_send.png" />
+            </div>
           </form>
         </div>
       </div>
     </section>
+    <section class="find-us-section container">
+      <div class="find-us-container">
+        <!-- Left Card -->
+        <div class="find-card">
+          <div class="red-bg"></div>
+          <div class="white-card">
+            <h2>Find<br />US</h2>
+            <img src="./assets/images/building.png" alt="Building" />
+          </div>
+        </div>
+
+        <!-- Right Map -->
+        <div class="map-card">
+          <!-- <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.480021164331!2d106.69042251533482!3d10.777007892322"
+            width="100%"
+            height="100%"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe> -->
+          <img src="./assets/images/location.png" />
+        </div>
+      </div>
+    </section>
+    <footer id="footer"></footer>
+    <script>
+      // Load footer.html content
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
   </body>
 </html>

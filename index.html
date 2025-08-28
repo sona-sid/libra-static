@@ -377,57 +377,15 @@
         <img src="./assets/images/client12.png" alt="BCL" />
       </div>
     </section>
-    <!--footer  -->
-    <footer class="footer">
-      <div class="footer-container">
-        <!-- Left Section -->
-        <div class="footer-left">
-          <img
-            src="./assets/images/logo_small.png"
-            alt="Libradesign Logo"
-            class="footer-logo"
-          />
-          <p>
-            372 A, Libra Tower<br />St.Francis Xavier Church Road<br />Kaloor,
-            Kochi - 682 018
-          </p>
-          <p class="tel">Tel: 0484 4061415</p>
-          <p class="mob">Mob: 95679 33344, 98469 22577</p>
-          <p class="email">
-            Email:
-            <a href="mailto:libradesign@gmail.com">libradesign@gmail.com</a>
-          </p>
-        </div>
-
-        <!-- Middle Section -->
-        <div class="footer-middle">
-          <ul class="footer-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#" target="_blank">About Us</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-
-          <div class="newsletter">
-            <h4>Sign up to our Newsletters</h4>
-            <form>
-              <input type="text" placeholder="Your name.." />
-              <input type="email" placeholder="Your email address.." />
-              <button type="submit">Subscribe</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Right Section -->
-        <div class="footer-right">
-          <h4>Follow Us</h4>
-          <div class="social-icons">
-            <img src="./assets/icons/inst.png" alt="" />
-            <img src="./assets/icons/fb.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </footer>
+    <footer id="footer"></footer>
+    <script>
+      // Load footer.html content
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./script.js"></script>
   </body>
