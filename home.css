@@ -108,6 +108,19 @@
     --tw-contain-style: ;
 }
 
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 /*
 ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com
 */
@@ -576,20 +589,6 @@ video {
 
 .underline {
     text-decoration-line: underline;
-}
-
-@font-face {
-    font-family: 'BebasNeue';
-    src: url('assets/fonts/BebasNeue-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('assets/fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
 }
 
 .inter {
