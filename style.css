@@ -327,6 +327,12 @@
     background-color: #FAFCFD;
 }
 
+.purpose-vision .container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
 .card {
     background: #fff;
     flex: 1 1 45%;
@@ -376,7 +382,7 @@
 }
 
 @media (max-width: 1024px) {
-    .purpose-vision {
+    .purpose-vision .container {
         flex-direction: column;
     }
 
@@ -971,34 +977,154 @@ textarea {
     border-radius: 15px;
     overflow: hidden;
 }
+
 @media (max-width: 1545px) {
-.find-us-container {
+    .find-us-container {
         padding: 144px 0 !important;
-}
-.find-card {
-    width: 520px;
-}
+    }
+
+    .find-card {
+        width: 520px;
+    }
 }
 
 @media (max-width: 1280px) {
-.find-us-container{
-    flex-direction: column;
-}
-.find-card {
-    width: 451px;
+    .find-us-container {
+        flex-direction: column;
+    }
+
+    .find-card {
+        width: 451px;
         height: 517px;
+    }
+
+    .find-us-section {
+        padding: 60px 0;
+    }
 }
-.find-us-section {
-    padding: 60px 0;
-}
-}
-@media (max-width: 768px) 
-{
+
+@media (max-width: 768px) {
     .find-card {
         width: 302px;
         height: 391px;
     }
 }
-.hero-image-wrapper img {
+
+.hero-image-wrapper img,
+.hero-logo img {
     opacity: 1 !important;
+}
+
+
+/* =====================quote ====================== */
+.quote-form-container {
+    margin: auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 90px 40px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Header */
+.quote .form-header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+    box-shadow: 0px 3.84px 3.84px 0px #0000001A;
+    padding: 50px;
+}
+
+.quote .form-grid h3 {
+    font-weight: 700;
+    font-size: 30px;
+    color: #313131;
+}
+
+.quote .form-header h2 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #36265C;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.quote .form-header p {
+    margin: 5px 0 0;
+    font-size: 20px;
+    color: #323232;
+}
+
+/* Grid Layout */
+.quote .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 40px;
+}
+
+.quote .form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quote label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.quote input,
+select,
+textarea {
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border 0.2s ease;
+}
+
+.quote input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #d82328;
+}
+
+.quote textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+/* Full Width Additional Info */
+.full-width {
+    grid-column: span 2;
+}
+
+/* Button */
+.form-actions {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.form-actions button {
+    background: #D82328;
+    color: #F7FAFC;
+    border: none;
+    padding: 14px 36px;
+    border-radius: 12px;
+    font-size: 34px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-actions button:hover {
+    background: #b81d22;
+}
+@media (max-width: 1024px) {
+.quote-form-container {
+    padding: 0 40px 20px 40px !important;
+}
 }
