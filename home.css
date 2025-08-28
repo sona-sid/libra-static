@@ -1249,7 +1249,7 @@ video {
 
 .hero-text h1 {
     font-weight: 700;
-    line-height: 1em;
+    /* line-height: 1em; */
 }
 
 .highlight {
@@ -2357,7 +2357,8 @@ video {
 /* --- Hero Animations --- */
 .hero-logo img,
 .hero-image-wrapper img,
-.hero-text {
+.hero-text,
+.services-heading {
   opacity: 0;
 }
 
@@ -2379,7 +2380,7 @@ video {
   100% { transform: translateX(0); opacity: 1; }
 }
 
-.animate-logo {
+.animate-logo, .services-heading {
   animation: slideFromTop 1s ease-out forwards;
 }
 
