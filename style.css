@@ -999,3 +999,6 @@ textarea {
         height: 391px;
     }
 }
+.hero-image-wrapper img {
+    opacity: 1 !important;
+}
