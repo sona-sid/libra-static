@@ -2148,7 +2148,7 @@ video {
     background-repeat: no-repeat;
     background-position: center;
 
-    background-image: url('../src/assets/images/footer-bg.png');
+    background-image: url('./assets/images/footer-bg.png');
 }
 
 @media (max-width: 1536px) {
@@ -2352,3 +2352,42 @@ video {
     --tw-text-opacity: 1;
     color: rgb(220 38 38 / var(--tw-text-opacity, 1));
 }
+
+
+/* --- Hero Animations --- */
+.hero-logo img,
+.hero-image-wrapper img,
+.hero-text {
+  opacity: 0;
+}
+
+/* Slide from Top (Logo) */
+@keyframes slideFromTop {
+  0% { transform: translateY(-80px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Slide from Left (Hero Image) */
+@keyframes slideFromLeft {
+  0% { transform: translateX(-150px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Slide from Right (Hero Text) */
+@keyframes slideFromRight {
+  0% { transform: translateX(150px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.animate-logo {
+  animation: slideFromTop 1s ease-out forwards;
+}
+
+.animate-hero-image {
+  animation: slideFromLeft 1.2s ease-out forwards;
+}
+
+.animate-hero-text {
+  animation: slideFromRight 1.2s ease-out forwards;
+}
+/* --- End Hero Animations --- */
