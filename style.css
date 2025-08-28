@@ -699,6 +699,14 @@
     .contact-container {
         flex-direction: column;
     }
+
+    .contact-subtitle {
+        font-size: 20px;
+    }
+
+    .contact-title {
+        font-size: 41px;
+    }
 }
 
 @media (max-width: 425px) {
@@ -713,7 +721,18 @@
 
     .btn-send {
         font-size: 14px;
+    }
 
+    .contact-title {
+        font-size: 31px;
+    }
+
+    .contact-subtitle {
+        font-size: 15px;
+    }
+
+    .contact-info h3 {
+        font-size: 25px;
     }
 }
 
@@ -856,5 +875,127 @@ textarea {
 
     .form-row {
         flex-direction: column;
+    }
+}
+
+.letter_send {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+}
+
+.letter_send img {
+    height: 112px;
+}
+
+
+.find-us-section {
+    padding: 60px 20px;
+}
+
+.find-us-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 144px 60px;
+    flex-wrap: wrap;
+}
+
+/* LEFT CARD */
+.find-card {
+    position: relative;
+    border-radius: 54px;
+    width: 627px;
+    height: 583px;
+    overflow: visible;
+}
+
+.red-bg {
+    background: #D82328;
+    border-radius: 54px;
+    border: 1px solid #715656;
+    width: 100%;
+    /* padding: 29px; */
+    height: 100%;
+    transform: rotateX(8deg)
+        /* tilt forward/back */
+        rotateY(352deg)
+        /* tilt sideways */
+        rotateZ(346deg)
+        /* flat rotation */
+        translateZ(-40px)
+        /* push backward in depth */
+        translateX(-10px)
+        /* move left */
+        translateY(10px);
+    position: absolute;
+    top: -81px;
+    transform-style: preserve-3d;
+    left: -106px;
+    z-index: 0;
+}
+
+.white-card {
+    background: #F5F5F5;
+    border-radius: 54px;
+    padding: 20px;
+    width: 100%;
+    border: 1px solid #DFDFDF;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.white-card h2 {
+    font-size: 47px;
+    font-weight: 900;
+    color: #36265C;
+    margin-bottom: 15px;
+}
+
+.white-card img {
+    width: 69%;
+    margin-top: auto;
+    border-radius: 0 0 15px 15px;
+}
+
+/* MAP CARD */
+.map-card {
+    width: 350px;
+    height: 230px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+@media (max-width: 1545px) {
+.find-us-container {
+        padding: 144px 0 !important;
+}
+.find-card {
+    width: 520px;
+}
+}
+
+@media (max-width: 1280px) {
+.find-us-container{
+    flex-direction: column;
+}
+.find-card {
+    width: 451px;
+        height: 517px;
+}
+.find-us-section {
+    padding: 60px 0;
+}
+}
+@media (max-width: 768px) 
+{
+    .find-card {
+        width: 302px;
+        height: 391px;
     }
 }
