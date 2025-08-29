@@ -660,7 +660,7 @@ video {
 
 .hero-text {
     position: absolute;
-    top: 22%;
+    top: 28%;
     right: 10%;
     text-align: center;
     color: white;
@@ -1249,7 +1249,8 @@ video {
 
 .hero-text h1 {
     font-weight: 700;
-    /* line-height: 1em; */
+    line-height: 1em;
+    overflow: hidden;
 }
 
 .highlight {
