@@ -43,85 +43,101 @@
       </div>
     </section>
     <section class="container">
-      <div class="quote-form-container">
-        <div class="form-header">
+       <div class="form-header">
           <h2>REQUEST A QUOTE</h2>
           <p>
             Tell us your printing needs and we’ll get back with a custom
             quotation.
           </p>
         </div>
-
+      <div class="quote-form-container">
         <form>
           <div class="form-grid">
             <!-- Personal Information -->
             <div class="form-section">
               <h3>Personal Information</h3>
-              <label for="fullname">Full Name *</label>
-              <input
-                type="text"
-                id="fullname"
-                placeholder="John Doe"
-                required
-              />
-
-              <label for="email">E-mail Address *</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="your_email@example.com"
-                required
-              />
-
-              <label for="phone">Phone Number *</label>
-              <input
-                type="tel"
-                id="phone"
-                placeholder="( _ ) ___ - ____"
-                required
-              />
-
-              <label for="company">Company Name</label>
-              <input type="text" id="company" placeholder="If Available" />
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="fullname"
+                  placeholder="John Doe"
+                  required
+                />
+                <label for="fullname">Full Name *</label>
+              </div>
+              <div class="input-group">
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="your_email@example.com"
+                  required
+                />
+                <label for="email">E-mail Address *</label>
+              </div>
+              <div class="input-group">
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="( _ ) ___ - ____"
+                  required
+                />
+                <label for="phone">Phone Number *</label>
+              </div>
+              <div class="input-group">
+                <input type="text" id="company" placeholder="If Available" />
+                <label for="company">Company Name</label>
+              </div>
             </div>
 
             <!-- Project Information -->
             <div class="form-section">
               <h3>Project Information</h3>
-              <label for="service">Printing Service Type</label>
-              <select id="service">
-                <option>Select Service</option>
-                <option>Flyers</option>
-                <option>Brochures</option>
-                <option>Business Cards</option>
-              </select>
-
-              <label for="quantity">Quantity Needed</label>
-              <input type="number" id="quantity" placeholder="0" />
-
-              <label for="material">Paper/Material Type</label>
-              <select id="material">
-                <option>Glossy</option>
-                <option>Matte</option>
-                <option>Textured</option>
-              </select>
-
-              <label for="size">Size</label>
-              <input type="text" id="size" placeholder="e.g. A4, A5, Custom" />
-            </div>
-
-            <!-- Additional Information -->
-            <hr />
-            <div class="form-section full-width">
-              <h3>Additional Information</h3>
-              <label for="file">Upload File</label>
-              <input type="file" id="file" />
-
-              <label for="notes">Additional Notes</label>
-              <textarea id="notes"></textarea>
+              <div class="input-group">
+                <select id="service">
+                  <option>Select Service</option>
+                  <option>Flyers</option>
+                  <option>Brochures</option>
+                  <option>Business Cards</option>
+                </select>
+                <label for="service">Printing Service Type</label>
+              </div>
+              <div class="input-group">
+                <label for="quantity">Quantity Needed</label>
+                <input type="number" id="quantity" placeholder="0" />
+              </div>
+              <div class="input-group">
+                <select id="material">
+                  <option>Glossy</option>
+                  <option>Matte</option>
+                  <option>Textured</option>
+                </select>
+                <label for="material">Paper/Material Type</label>
+              </div>
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="size"
+                  placeholder="e.g. A4, A5, Custom"
+                />
+                <label for="size">Size</label>
+              </div>
             </div>
           </div>
-
+          <!-- Additional Information -->
+          <hr class="horiz-line" />
+          <div class="form-grid">
+            <div class="form-section full-width">
+              <h3>Additional Information</h3>
+              <div class="input-group file">
+                <input type="file" id="file" />
+                <label for="file">Upload File</label>
+              </div>
+              <div class="input-group">
+                <textarea id="notes"></textarea>
+                <label for="notes">Additional Notes</label>
+              </div>
+            </div>
+          </div>
           <div class="form-actions">
             <button type="submit">Submit Request</button>
           </div>

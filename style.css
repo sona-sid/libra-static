@@ -896,7 +896,7 @@ textarea {
 
 
 .find-us-section {
-    padding: 60px 20px;
+    padding: 90px 20px;
 }
 
 .find-us-container {
@@ -904,109 +904,64 @@ textarea {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    padding: 144px 60px;
-    flex-wrap: wrap;
 }
 
-/* LEFT CARD */
-.find-card {
-    position: relative;
-    border-radius: 54px;
-    width: 627px;
-    height: 583px;
-    overflow: visible;
-}
-
-.red-bg {
-    background: #D82328;
-    border-radius: 54px;
-    border: 1px solid #715656;
-    width: 100%;
-    /* padding: 29px; */
-    height: 100%;
-    transform: rotateX(8deg)
-        /* tilt forward/back */
-        rotateY(352deg)
-        /* tilt sideways */
-        rotateZ(346deg)
-        /* flat rotation */
-        translateZ(-40px)
-        /* push backward in depth */
-        translateX(-10px)
-        /* move left */
-        translateY(10px);
-    position: absolute;
-    top: -81px;
-    transform-style: preserve-3d;
-    left: -106px;
-    z-index: 0;
-}
-
-.white-card {
-    background: #F5F5F5;
-    border-radius: 54px;
-    padding: 20px;
-    width: 100%;
-    border: 1px solid #DFDFDF;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.white-card h2 {
-    font-size: 47px;
-    font-weight: 900;
-    color: #36265C;
-    margin-bottom: 15px;
-}
-
-.white-card img {
-    width: 69%;
-    margin-top: auto;
-    border-radius: 0 0 15px 15px;
-}
 
 /* MAP CARD */
 .map-card {
-    width: 350px;
-    height: 230px;
     border-radius: 15px;
-    overflow: hidden;
+}
+
+.find_us img {
+    width: 888px;
+    height: 825px;
 }
 
 @media (max-width: 1545px) {
-    .find-us-container {
-        padding: 144px 0 !important;
+    .find_us img {
+        width: 799px;
+        height: 736px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .find_us img {
+        width: 517px;
+        height: 454px;
     }
 
-    .find-card {
-        width: 520px;
+    .map-card img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .find_us img {
+        width: 411px;
+        height: 348px;
     }
 }
 
 @media (max-width: 1280px) {
-    .find-us-container {
-        flex-direction: column;
-    }
-
-    .find-card {
-        width: 451px;
-        height: 517px;
-    }
-
     .find-us-section {
-        padding: 60px 0;
+        padding: 60px 20px;
     }
 }
 
 @media (max-width: 768px) {
-    .find-card {
-        width: 302px;
-        height: 391px;
+    .find_us img {
+        width: 324px;
+        height: 261px;
+    }
+}
+
+@media (max-width: 580px) {
+    .find-us-container {
+        flex-direction: column;
+    }
+
+    .map-card img {
+        width: 100%;
     }
 }
 
@@ -1022,21 +977,29 @@ textarea {
     background: #fff;
     border-radius: 8px;
     padding: 90px 40px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 4px 4px 0px #0000001A;
+    padding: 50px 40px 90px 40px;
 }
 
 /* Header */
 .quote .form-header {
-    border-bottom: 1px solid #eee;
+    background-color: #FDFDFD;
     margin-bottom: 40px;
     box-shadow: 0px 3.84px 3.84px 0px #0000001A;
     padding: 50px;
+    margin: 50px 40px;
 }
 
 .quote .form-grid h3 {
     font-weight: 700;
+    margin-bottom: 25px;
     font-size: 30px;
     color: #313131;
+}
+
+.quote-form-container form {
+    box-shadow: 0px 4px 4px 0px #0000001A;
+    padding: 20px;
 }
 
 .quote .form-header h2 {
@@ -1056,6 +1019,7 @@ textarea {
 /* Grid Layout */
 .quote .form-grid {
     display: grid;
+    padding: 30px 0;
     grid-template-columns: 1fr 1fr;
     gap: 30px 40px;
 }
@@ -1066,30 +1030,76 @@ textarea {
     gap: 15px;
 }
 
-.quote label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 4px;
+.quote label,
+.input-group.file label {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    color: #313131 !important;
+    margin-bottom: 4px !important;
+    position: absolute !important;
+    left: 12px !important;
+    top: 0% !important;
+    pointer-events: none !important;
+    transition: all 0.2s ease !important;
+    background: #fff !important;
+    padding: 10px 4px !important;
+    transform: translateY(-50%) !important;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    overflow: visible;
 }
 
 .quote input,
-select,
-textarea {
-    padding: 12px 14px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+.quote select,
+.quote textarea {
+    padding: 24px 18px;
+    font-size: 15px;
+    border: 1.44px solid #EBEBEB;
+    border-radius: 8px;
+    /* smoother corners */
     width: 100%;
-    box-sizing: border-box;
-    transition: border 0.2s ease;
+    background-color: #fff;
+    outline: none;
+    transition: all 0.2s ease;
 }
 
 .quote input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #d82328;
+.quote select:focus,
+.quote textarea:focus {
+    border-color: #007bff;
+    /* Figma-like primary color */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label,
+
+/* .input-group select:focus + label,
+.input-group select:not(:placeholder-shown) + label, */
+
+.input-group textarea:focus+label,
+.input-group textarea:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #007bff;
+}
+
+.horiz-line {
+    border: none;
+    height: 3px;
+    background-color: #F4F4F4;
+}
+
+.quote input::placeholder,
+.quote textarea::placeholder {
+    color: #999999;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .quote textarea {
@@ -1105,7 +1115,7 @@ textarea:focus {
 /* Button */
 .form-actions {
     text-align: center;
-    margin-top: 25px;
+    margin: 25px 0 40px 0;
 }
 
 .form-actions button {
@@ -1123,8 +1133,53 @@ textarea:focus {
 .form-actions button:hover {
     background: #b81d22;
 }
+
 @media (max-width: 1024px) {
-.quote-form-container {
-    padding: 0 40px 20px 40px !important;
+    .quote-form-container {
+        padding: 0 40px 20px 40px !important;
+    }
+
+    .quote .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-actions button {
+            font-size: 27px;
+    }
 }
+
+@media (max-width: 768px) {
+    .quote .form-grid h3 {
+        font-size: 21px;
+            margin-bottom: 17px;
+    }
+    .form-actions button {
+            font-size: 18px;
+    }
+    .quote label {
+        font-size: 13px !important;
+        padding: 2px 4px !important;
+    }
+   /* .quote input, .quote select, .quote textarea {
+            font-size: 7px !important;
+    } */
+     .quote input::placeholder,
+.quote textarea::placeholder {
+     font-size: 15px;
+}
+    .quote-form-container {
+        padding: 0 0 20px 0 !important;
+    }
+    .quote .form-header {
+    padding: 30px;
+    margin: 20px 20px;
+    }
+    .quote .form-header h2 {
+    font-size: 16px;
+    }
+    .quote .form-header p {
+    font-size: 14px;
+    }
+    .quote .form-grid {
+            padding: 10px 0;
+    }
 }
