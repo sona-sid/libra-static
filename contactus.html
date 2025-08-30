@@ -55,30 +55,36 @@
           <p>Have questions or need assistance? We're here to help</p>
 
           <ul class="info-list">
+             <a href="tel:0484 4061415" target="_blank">
             <li>
               <span>
                 <img src="./assets/icons/phone.png" />
               </span>
               0484 4061415
             </li>
-            <li>
-              <span>
-                <img
-                  src="./assets/icons/mail.png"
-                  style="width: 23px; height: 19px"
-              /></span>
-              libradesign@gmail.com
-            </li>
-            <li>
-              <span>
-                <img
-                  src="./assets/icons/location.png"
-                  style="width: 19px; height: 25px"
-              /></span>
-              372 A,<br />
-              Libra Tower, St.Francis Xavier Church Road,<br />
-              Kaloor, Kochi - 682 018
-            </li>
+            </a>
+            <a href="mailto:libradesign@gmail.com" target="_blank">
+              <li>
+                <span>
+                  <img
+                    src="./assets/icons/mail.png"
+                    style="width: 23px; height: 19px"
+                /></span>
+                libradesign@gmail.com
+              </li>
+            </a>
+            <a href="https://maps.app.goo.gl/hZndbpaGkBXuUFPCA" target="_blank"
+              ><li>
+                <span>
+                  <img
+                    src="./assets/icons/location.png"
+                    style="width: 19px; height: 25px"
+                /></span>
+                372 A,<br />
+                Libra Tower, St.Francis Xavier Church Road,<br />
+                Kaloor, Kochi - 682 018
+              </li>
+            </a>
             <li style="margin-bottom: 110px">
               <span>
                 <img
@@ -110,29 +116,26 @@
             <div class="form-row">
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text" placeholder="John"  />
+                <input type="text" placeholder="John" />
                 <span class="error"></span>
               </div>
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" placeholder="Doe"  />
-                 <span class="error"></span>
+                <input type="text" placeholder="Doe" />
+                <span class="error"></span>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label>Email</label>
-                <input
-                  type="email"
-                  placeholder="your_email@example.com"
-                />
-                 <span class="error"></span>
+                <input type="email" placeholder="your_email@example.com" />
+                <span class="error"></span>
               </div>
               <div class="form-group">
                 <label>Phone Number</label>
-                <input type="tel" placeholder="+1012 3456 789"  />
-                 <span class="error"></span>
+                <input type="tel" placeholder="+1012 3456 789" />
+                <span class="error"></span>
               </div>
             </div>
 
@@ -140,7 +143,12 @@
               <label>Select Subject?</label>
               <div class="radio-group">
                 <label>
-                  <input type="radio" name="subject" value="General Inquiry"  checked />
+                  <input
+                    type="radio"
+                    name="subject"
+                    value="General Inquiry"
+                    checked
+                  />
                   <span>General Inquiry</span>
                 </label>
 
@@ -163,7 +171,10 @@
 
             <div class="form-group message">
               <label>Message</label>
-              <textarea id="message"  placeholder="Write your message.." ></textarea>
+              <textarea
+                id="message"
+                placeholder="Write your message.."
+              ></textarea>
             </div>
             <div class="msg-btn">
               <button type="submit" class="btn-send">Send Message</button>
@@ -182,7 +193,9 @@
         </div>
         <!-- Right Map -->
         <div class="map-card">
-          <img src="./assets/images/location.png" />
+          <a href="https://maps.app.goo.gl/hZndbpaGkBXuUFPCA" target="_blank">
+            <img src="./assets/images/location.png" />
+          </a>
         </div>
       </div>
     </section>
@@ -195,6 +208,6 @@
           document.getElementById("footer").innerHTML = data;
         });
     </script>
-    <script src="./script.js" ></script>
+    <script src="./script.js"></script>
   </body>
 </html>
