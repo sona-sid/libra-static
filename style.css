@@ -530,17 +530,50 @@
     }
 
     .values-section.container {
-        max-width: 100% !important;
-
+        /* max-width: 100% !important; */
     }
 
     .value-card {
-        width: 2831px !important;
-        padding: 15px 1px;
+        width: 68%;
+    }
+
+    .curve-down,
+    .curve-up {
+        display: none;
     }
 
     .values-container {
         padding: 40px 0;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .value-card {
+        width: 54%;
+    }
+}
+
+@media (max-width: 550px) {
+    .value-card {
+        width: 66%;
+    }
+
+    .values-container {
+        padding: 20px 0 !important;
+    }
+}
+
+@media (max-width: 425px) {
+    .value-card {
+        width: 75%;
+        padding: 15px 21px;
+    }
+}
+@media (max-width: 374px) {
+    .value-card {
+        width: 88%;
+        padding: 15px 21px;
     }
 }
 
