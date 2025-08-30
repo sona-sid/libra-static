@@ -1481,7 +1481,7 @@ video {
 
 .left-col {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1.5fr 2fr 1fr;
     gap: 1.5rem;
 }
 
@@ -1503,7 +1503,7 @@ video {
 
 .right-col {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.8fr 2fr;
     gap: 1.5rem;
 }
 
@@ -2154,16 +2154,18 @@ video {
         top: 35% !important;
         width: 47% !important;
     }
-.services {
-    padding-bottom: 0 !important;
+
+    .services {
+        padding-bottom: 0 !important;
+    }
 }
-}
+
 @media (max-width: 425px) {
-   .services {
+    .services {
         padding-bottom: 50px !important;
     }
 }
- 
+
 @media (max-width: 460px) {
     .tech-title {
         font-size: 38px !important;
@@ -2177,6 +2179,7 @@ video {
         padding: 40px 20px !important;
     }
 }
+
 @media (max-width: 390px) {
     .tech-title {
         font-size: 25px !important;
