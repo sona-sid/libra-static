@@ -216,6 +216,23 @@
         font-size: 23px !important;
     }
 
+    .abtsection2,
+    .purpose-vision {
+        padding: 30px 20px !important;
+    }
+
+    .abt-container h4 {
+        font-size: 34px !important;
+    }
+
+    .abt-container p, .purpose-vision .card p {
+        font-size: 13px !important;
+    }
+
+    .btn-explore {
+        font-size: 10px;
+    }
+
     .abt-text {
         top: 39% !important;
         right: 33% !important;
@@ -570,6 +587,7 @@
         padding: 15px 21px;
     }
 }
+
 @media (max-width: 374px) {
     .value-card {
         width: 88%;
@@ -604,7 +622,7 @@
 }
 
 .curve-down {
-    margin-top: 300px;
+    margin-top: 213px;
     /* push curve lower to connect */
 }
 
@@ -942,6 +960,11 @@ textarea {
 @media (max-width: 768px) {
     .contact-container {
         flex-direction: column;
+    }
+
+    .abtsection2,
+    .purpose-vision {
+        padding: 50px 20px;
     }
 
     .form-row {
