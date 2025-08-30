@@ -225,7 +225,8 @@
         font-size: 34px !important;
     }
 
-    .abt-container p, .purpose-vision .card p {
+    .abt-container p,
+    .purpose-vision .card p {
         font-size: 13px !important;
     }
 
@@ -1278,5 +1279,74 @@ textarea {
 
     .quote .form-grid {
         padding: 10px 0;
+    }
+}
+
+/* ==================================portfolio================================== */
+
+.load {
+    padding: 50px;
+}
+.load h5 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.loader {
+    width: 65px;
+    aspect-ratio: 1;
+    margin-left: auto;
+    margin-right: auto;
+        /* top: 50%; */
+    position: relative;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    position: absolute;
+    border-radius: 50px;
+    box-shadow: 0 0 0 3px inset #36265C;
+    animation: l4 2.5s infinite;
+}
+
+.loader:after {
+    animation-delay: -1.25s;
+}
+
+@keyframes l4 {
+    0% {
+        inset: 0 35px 35px 0;
+    }
+
+    12.5% {
+        inset: 0 35px 0 0;
+    }
+
+    25% {
+        inset: 35px 35px 0 0;
+    }
+
+    37.5% {
+        inset: 35px 0 0 0;
+    }
+
+    50% {
+        inset: 35px 0 0 35px;
+    }
+
+    62.5% {
+        inset: 0 0 0 35px;
+    }
+
+    75% {
+        inset: 0 0 35px 35px;
+    }
+
+    87.5% {
+        inset: 0 0 35px 0;
+    }
+
+    100% {
+        inset: 0 35px 35px 0;
     }
 }

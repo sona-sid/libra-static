@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIBRA DESIGN</title>
+    <link href="./home.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+  <body class="quote">
+    <!-- banner -->
+    <section class="hero-section">
+      <div class="hero-box">
+        <img src="./assets/images/banner.png" alt="Hero" class="hero-about" />
+
+        <div class="hero-nav">
+          <ul class="bebas hero-nav-list">
+          <li><a href="./">Home</a></li>
+            <li><a href="./aboutus.html">About Us</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./contactus.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="hero-logo">
+          <img src="./assets/images/logo_small.png" alt="Creative Print" />
+        </div>
+
+        <div class="abt-text">
+          <h1 class="bebas abt-heading">
+            <span class="highlight">Portfolio </span>
+          </h1>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <img
+            src="./assets/images/brain-small.png"
+            alt="Creative Print"
+            class="hero-image"
+          />
+        </div>
+      </div>
+    </section>
+<section class="load">
+    <h5 class="contact-title">Coming Soon</h5>
+    <div class="loader"></div>
+</section>
+
+   
+    <footer id="footer"></footer>
+    <script>
+      // Load footer.html content
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>
