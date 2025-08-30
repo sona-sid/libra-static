@@ -2564,10 +2564,101 @@ video {
     animation: slideFromRight 1.2s ease-out forwards;
 }
 
+/* section2 animations */
+
+
+.section2 h4,
+.section2 h3,
+.section2 h6 {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+    /* position: relative; */
+}
+
+.section2.animate-in h4,
+.section2.animate-in h3,
+.section2.animate-in h6 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+.section2.animate-in h4 {
+    transition-delay: 0.1s;
+}
+
+.section2.animate-in h3 {
+    transition-delay: 0.2s;
+}
+
+.section2.animate-in h6 {
+    transition-delay: 0.3s;
+}
+
+.section2 .printer-box {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1s ease-out;
+    will-change: transform, opacity;
+    position: relative;
+}
+
+.section2.animate-in .printer-box {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* services animations */
+
+/* Initial hidden state */
+.services-heading h4,
+.services-heading h3,
+.services-heading h6,
+.printing-slider {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+    position: relative;
+    /* avoids scrollbar jump */
+}
+.services, .services-heading, .section2 , .section2 div {
+  overflow: hidden;
+}
+/* Animate in (with stagger) */
+.services.animate-in .services-heading h4 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+}
+
+.services.animate-in .services-heading h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.services.animate-in .services-heading h6 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+}
+
+/* Slider comes after heading */
+.services.animate-in .printing-slider {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+/* tech banner animation */
+
+
 /* --- End Hero Animations --- */
 .error {
-  color: red;
-  font-size: 14px;
-  margin-top: 4px;
-  display: block;
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+    display: block;
 }

@@ -1,27 +1,53 @@
-
 //contact us form validation
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); 
+    e.preventDefault();
     let isValid = true;
 
     // Clear old errors
-    document.querySelectorAll(".error").forEach(el => el.textContent = "");
-    document.querySelectorAll("input, textarea").forEach(el => el.classList.remove("invalid"));
+    document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
+    document
+      .querySelectorAll("input, textarea")
+      .forEach((el) => el.classList.remove("invalid"));
 
     // Validation rules
     const fields = [
-      { id: "firstName", label: "First name", regex: /^[A-Za-z]+$/, error: "Only letters allowed" },
-      { id: "lastName", label: "Last name", regex: /^[A-Za-z]+$/, error: "Only letters allowed" },
-      { id: "email", label: "Email", regex: /^[^ ]+@[^ ]+\.[a-z]{2,3}$/, error: "Invalid email format" },
-      { id: "phone", label: "Phone number", regex: /^[0-9+\-\s]{7,15}$/, error: "Invalid phone number" },
-      { id: "message", label: "Message", regex: /^.{5,}$/, error: "Message must be at least 5 characters" }
+      {
+        id: "firstName",
+        label: "First name",
+        regex: /^[A-Za-z]+$/,
+        error: "Only letters allowed",
+      },
+      {
+        id: "lastName",
+        label: "Last name",
+        regex: /^[A-Za-z]+$/,
+        error: "Only letters allowed",
+      },
+      {
+        id: "email",
+        label: "Email",
+        regex: /^[^ ]+@[^ ]+\.[a-z]{2,3}$/,
+        error: "Invalid email format",
+      },
+      {
+        id: "phone",
+        label: "Phone number",
+        regex: /^[0-9+\-\s]{7,15}$/,
+        error: "Invalid phone number",
+      },
+      {
+        id: "message",
+        label: "Message",
+        regex: /^.{5,}$/,
+        error: "Message must be at least 5 characters",
+      },
     ];
 
     // Check for empty + regex
-    fields.forEach(field => {
+    fields.forEach((field) => {
       const input = document.getElementById(field.id);
       const value = input.value.trim();
 
@@ -39,7 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check subject (radio buttons)
     const subject = document.querySelector("input[name='subject']:checked");
     if (!subject) {
-      document.querySelector(".subject .error").textContent = "Please select a subject";
+      document.querySelector(".subject .error").textContent =
+        "Please select a subject";
       isValid = false;
     }
 
@@ -54,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(`#${id} + .error`).textContent = message;
   }
 });
-
 
 const swiper = new Swiper(".printing-slider .swiper", {
   slidesPerView: "auto",
@@ -106,7 +132,64 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  hamburger.classList.toggle("open");
+//section2 animation
+document.addEventListener("DOMContentLoaded", () => {
+  const section2 = document.querySelector(".section2");
+
+  if (section2) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section2.classList.add("animate-in");
+            observer.unobserve(section2); // run only once
+          }
+        });
+      },
+      { threshold: 0.2 } // triggers when 20% of section is visible
+    );
+
+    observer.observe(section2);
+  }
+});
+
+/* services animations */
+document.addEventListener("DOMContentLoaded", () => {
+  const servicesSection = document.querySelector(".services");
+
+  if (servicesSection) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            servicesSection.classList.add("animate-in");
+            observer.unobserve(servicesSection); // run only once
+          }
+        });
+      },
+      { threshold: 0.2 } // trigger when 20% is visible
+    );
+
+    observer.observe(servicesSection);
+  }
+});
+
+/* tech banner animation */
+document.addEventListener("DOMContentLoaded", () => {
+  const techSection = document.querySelector(".tech-section");
+  if (!techSection) return;
+
+  const io = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          techSection.classList.add("animate-in");
+          io.unobserve(techSection);
+        }
+      });
+    },
+    { threshold: 0.25 } // trigger when ~25% of the section is visible
+  );
+
+  io.observe(techSection);
 });
