@@ -1400,7 +1400,6 @@ video {
     text-align: center;
     font-size: 33px;
     font-weight: 400;
-    text-transform: capitalize;
     --tw-text-opacity: 1;
     color: rgb(65 65 65 / var(--tw-text-opacity, 1));
 }
