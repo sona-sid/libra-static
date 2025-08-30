@@ -53,7 +53,7 @@
         $message = $_POST['message'] ?? '';
     
         // Prepare email
-        $to = "libradesign@gmail.com";
+        $to = "sonasidharthan1@gmail.com";
         $email_subject = "New Contact Form Submission: $subject";
         $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
         $headers = "From: $email";
