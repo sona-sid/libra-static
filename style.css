@@ -1287,16 +1287,18 @@ textarea {
 .load {
     padding: 50px;
 }
+
 .load h5 {
     text-align: center;
     margin-bottom: 50px;
 }
+
 .loader {
     width: 65px;
     aspect-ratio: 1;
     margin-left: auto;
     margin-right: auto;
-        /* top: 50%; */
+    /* top: 50%; */
     position: relative;
 }
 
