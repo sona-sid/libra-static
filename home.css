@@ -2565,3 +2565,9 @@ video {
 }
 
 /* --- End Hero Animations --- */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+}

@@ -106,26 +106,33 @@
 
         <!-- RIGHT SIDE -->
         <div class="contact-form">
-          <form>
+          <form id="contactForm">
             <div class="form-row">
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text" placeholder="John" />
+                <input type="text" placeholder="John"  />
+                <span class="error"></span>
               </div>
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" placeholder="Doe" />
+                <input type="text" placeholder="Doe"  />
+                 <span class="error"></span>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="your_email@example.com" />
+                <input
+                  type="email"
+                  placeholder="your_email@example.com"
+                />
+                 <span class="error"></span>
               </div>
               <div class="form-group">
                 <label>Phone Number</label>
-                <input type="tel" placeholder="+1012 3456 789" />
+                <input type="tel" placeholder="+1012 3456 789"  />
+                 <span class="error"></span>
               </div>
             </div>
 
@@ -133,22 +140,22 @@
               <label>Select Subject?</label>
               <div class="radio-group">
                 <label>
-                  <input type="radio" name="subject" checked />
+                  <input type="radio" name="subject" value="General Inquiry"  checked />
                   <span>General Inquiry</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="subject" />
+                  <input type="radio" name="subject" value="Print Inquiry" />
                   <span>Print Inquiry</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="subject" />
+                  <input type="radio" name="subject" value="Design Inquiry" />
                   <span>Design Inquiry</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="subject" />
+                  <input type="radio" name="subject" value="Branding Inquiry" />
                   <span>Branding Inquiry</span>
                 </label>
               </div>
@@ -156,7 +163,7 @@
 
             <div class="form-group message">
               <label>Message</label>
-              <textarea placeholder="Write your message.."></textarea>
+              <textarea id="message"  placeholder="Write your message.." ></textarea>
             </div>
             <div class="msg-btn">
               <button type="submit" class="btn-send">Send Message</button>
@@ -171,7 +178,7 @@
     <section class="find-us-section container">
       <div class="find-us-container">
         <div class="find_us">
-        <img src="./assets/images/find_us.png" />
+          <img src="./assets/images/find_us.png" />
         </div>
         <!-- Right Map -->
         <div class="map-card">
@@ -188,5 +195,6 @@
           document.getElementById("footer").innerHTML = data;
         });
     </script>
+    <script src="./script.js" ></script>
   </body>
 </html>
