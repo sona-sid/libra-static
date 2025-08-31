@@ -2140,7 +2140,7 @@ video {
     }
 
     .brain-image {
-        top: 38% !important;
+        top: -26% !important;
 
     }
 }
@@ -2151,7 +2151,7 @@ video {
     }
 
     .brain-image {
-        top: 35% !important;
+        top:-29% !important;
         width: 47% !important;
     }
 
@@ -2172,7 +2172,7 @@ video {
     }
 
     .brain-image {
-        top: 32% !important;
+        top: -31% !important;
     }
 
     .tech-banner {
@@ -2186,7 +2186,7 @@ video {
     }
 
     .brain-image {
-        top: 31% !important;
+        top: -32% !important;
         left: 6% !important;
     }
 
@@ -2653,6 +2653,50 @@ video {
 }
 
 /* tech banner animation */
+.tech-section {
+  width: 100%;
+  padding: 50px 20px;
+  position: relative;
+  overflow: visible;
+}
+
+.tech-banner {
+  background-color: #e30613;
+  border-radius: 12px;
+  padding: 40px 60px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.tech-text-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tech-title {
+  color: white;
+  font-size: 187px;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.brain-image {
+  position: absolute;
+  top: 75%;
+    left: 4%;
+  transition: transform 1s ease-out, top 1s ease-out;
+  transform: translateY(-300px); 
+  z-index: 2;
+}
+
+.brain-image.show {
+  transform: translateY(0);
+  top: -105px; 
+}
 
 
 /* --- End Hero Animations --- */
