@@ -46,9 +46,17 @@
 
         <div class="newsletter">
           <h4>Sign up to our Newsletters</h4>
-          <form>
-            <input type="text" placeholder="Your name.." required />
-            <input type="email" placeholder="Your email address.." required />
+          <form id="subscribeForm">
+            <input type="text" id="name" placeholder="Your name.." required />
+            <span id="nameError" class="error"></span>
+            <input
+              id="email"
+              type="email"
+              placeholder="Your email address.."
+              required
+            />
+            <span id="emailError" class="error"></span>
+
             <button type="submit">Subscribe</button>
           </form>
         </div>
@@ -64,5 +72,6 @@
       </div>
     </div>
     <!-- </footer> -->
+    <script src="./script.js"></script>
   </body>
 </html>

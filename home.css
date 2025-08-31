@@ -2660,8 +2660,12 @@ video {
     color: red;
     font-size: 14px;
     margin-top: 4px;
-    display: block;
+    display: none; 
 }
+.error.show {
+  display: block;  /* show only when error */
+}
+
 #successMessage {
       margin-top: 15px;
   color: green;

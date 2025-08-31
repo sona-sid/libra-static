@@ -8,7 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let isValid = true;
 
     // Clear old errors
-    document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
+    document.querySelectorAll(".error").forEach((el) => {
+      el.textContent = "";
+      el.classList.remove("show"); // hide errors
+    });
+
     document
       .querySelectorAll("input, textarea")
       .forEach((el) => el.classList.remove("invalid"));
@@ -63,18 +67,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Check subject
+    // Check subject (radio buttons)
     const subject = document.querySelector("input[name='subject']:checked");
     if (!subject) {
-      document.querySelector(".subject .error").textContent =
-        "Please select a subject";
+      const subjectError = document.querySelector(".subject .error");
+      subjectError.textContent = "Please select a subject";
+      subjectError.classList.add("show");
       isValid = false;
     }
 
     if (isValid) {
       form.reset();
 
-      // Show message
+      // Show success message
       successMessage.style.display = "block";
       successMessage.style.opacity = "1";
 
@@ -83,19 +88,22 @@ document.addEventListener("DOMContentLoaded", () => {
         successMessage.style.opacity = "0";
         setTimeout(() => {
           successMessage.style.display = "none";
-        }, 1000); // wait for fade transition to finish
-      }, 20000); // 20 seconds
+        }, 1000);
+      }, 20000);
     }
   });
 
   // Show error message
   function showError(id, message) {
     const input = document.getElementById(id);
-    input.nextElementSibling.textContent = message;
+    const errorEl = input.nextElementSibling; // assumes <span class="error"></span> follows input
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.classList.add("show"); // display:block
+    }
   }
 });
 
-//quote form validation
 //quote form validation
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("quoteForm");
@@ -106,7 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let isValid = true;
 
     // Clear old errors
-    document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
+    document.querySelectorAll(".error").forEach((el) => {
+      el.textContent = "";
+      el.classList.remove("show");
+    });
     document
       .querySelectorAll("input, textarea, select")
       .forEach((el) => el.classList.remove("invalid"));
@@ -200,9 +211,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showError(id, message) {
     const input = document.getElementById(id);
-    input.parentElement.querySelector(".error").textContent = message;
+    const errorEl = input.parentElement.querySelector(".error");
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.classList.add("show"); // make it visible
+    }
   }
 });
+
+//fotter form
+document
+  .getElementById("subscribeForm")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+
+    // Name validation (only letters and spaces, min 2 chars)
+    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+    if (!nameRegex.test(nameInput.value.trim())) {
+      nameError.classList.add("show");
+      isValid = false;
+    } else {
+      nameError.classList.remove("show");
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value.trim())) {
+      emailError.classList.add("show");
+      isValid = false;
+    } else {
+      emailError.classList.remove("show");
+    }
+
+    if (isValid) {
+      alert("Form submitted successfully!");
+      // here you can send data to backend
+      this.reset();
+    }
+  });
 
 //home swiper
 const swiper = new Swiper(".printing-slider .swiper", {
