@@ -1,6 +1,7 @@
 //contact us form validation
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
+  const successMessage = document.getElementById("successMessage");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -17,26 +18,26 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "firstName",
         label: "First name",
-        regex: /^[A-Za-z]+$/,
-        error: "Only letters allowed",
+        regex: /^[A-Za-z]{2,}$/,
+        error: "Only letters allowed (min 2)",
       },
       {
         id: "lastName",
         label: "Last name",
-        regex: /^[A-Za-z]+$/,
-        error: "Only letters allowed",
+        regex: /^[A-Za-z]{2,}$/,
+        error: "Only letters allowed (min 2)",
       },
       {
         id: "email",
         label: "Email",
-        regex: /^[^ ]+@[^ ]+\.[a-z]{2,3}$/,
+        regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/,
         error: "Invalid email format",
       },
       {
         id: "phone",
         label: "Phone number",
-        regex: /^[0-9+\-\s]{7,15}$/,
-        error: "Invalid phone number",
+        regex: /^\+?[0-9]{7,15}$/,
+        error: "Phone must be digits only (7-15 digits)",
       },
       {
         id: "message",
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ];
 
-    // Check for empty + regex
+    // Check each field
     fields.forEach((field) => {
       const input = document.getElementById(field.id);
       const value = input.value.trim();
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Check subject (radio buttons)
+    // Check subject
     const subject = document.querySelector("input[name='subject']:checked");
     if (!subject) {
       document.querySelector(".subject .error").textContent =
@@ -71,17 +72,139 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (isValid) {
-      alert("Form submitted successfully!");
       form.reset();
+
+      // Show message
+      successMessage.style.display = "block";
+      successMessage.style.opacity = "1";
+
+      // Hide after 20s (fade out)
+      setTimeout(() => {
+        successMessage.style.opacity = "0";
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 1000); // wait for fade transition to finish
+      }, 20000); // 20 seconds
     }
   });
 
   // Show error message
   function showError(id, message) {
-    document.querySelector(`#${id} + .error`).textContent = message;
+    const input = document.getElementById(id);
+    input.nextElementSibling.textContent = message;
   }
 });
 
+//quote form validation
+//quote form validation
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("quoteForm");
+  const successMessage = document.getElementById("successMessage");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let isValid = true;
+
+    // Clear old errors
+    document.querySelectorAll(".error").forEach((el) => (el.textContent = ""));
+    document
+      .querySelectorAll("input, textarea, select")
+      .forEach((el) => el.classList.remove("invalid"));
+
+    // Validation rules
+    const fields = [
+      {
+        id: "fullname",
+        label: "Full Name",
+        regex: /^[A-Za-z\s]{2,}$/,
+        error: "Enter a valid name (letters only, min 2 chars)",
+      },
+      {
+        id: "email",
+        label: "Email",
+        regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/,
+        error: "Invalid email format",
+      },
+      {
+        id: "phone",
+        label: "Phone Number",
+        regex: /^\+?[0-9]{7,15}$/,
+        error: "Phone must be digits only (7–15 digits)",
+      },
+      {
+        id: "service",
+        label: "Service",
+        regex: /^(?!\s*$).+/, // not empty
+        error: "Please select a service",
+      },
+      {
+        id: "quantity",
+        label: "Quantity",
+        regex: /^[1-9][0-9]*$/,
+        error: "Enter a valid quantity (greater than 0)",
+      },
+      {
+        id: "material",
+        label: "Material",
+        regex: /^(?!\s*$).+/, // not empty
+        error: "Please select a material",
+      },
+      {
+        id: "size",
+        label: "Size",
+        regex: /^.{2,}$/, // at least 2 characters
+        error: "Size is required (e.g. A4, A5, Custom)",
+      },
+    ];
+
+    // Validate normal fields
+    fields.forEach((field) => {
+      const input = document.getElementById(field.id);
+      const value = input.value.trim();
+
+      if (value === "") {
+        showError(field.id, `${field.label} is required`);
+        input.classList.add("invalid");
+        isValid = false;
+      } else if (!field.regex.test(value)) {
+        showError(field.id, field.error);
+        input.classList.add("invalid");
+        isValid = false;
+      }
+    });
+
+    // Validate file upload
+    const fileInput = document.getElementById("file");
+    if (!fileInput.files.length) {
+      showError("file", "File upload is required");
+      fileInput.classList.add("invalid");
+      isValid = false;
+    }
+
+    if (isValid) {
+      form.reset();
+
+      // Show success message
+      successMessage.style.display = "block";
+      successMessage.style.opacity = "1";
+
+      // Hide after 15s
+      setTimeout(() => {
+        successMessage.style.opacity = "0";
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 1000); // wait for fade
+      }, 15000);
+    }
+  });
+
+  function showError(id, message) {
+    const input = document.getElementById(id);
+    input.parentElement.querySelector(".error").textContent = message;
+  }
+});
+
+//home swiper
 const swiper = new Swiper(".printing-slider .swiper", {
   slidesPerView: "auto",
   centeredSlides: true,
@@ -180,8 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!techSection) return;
 
   const io = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           techSection.classList.add("animate-in");
           io.unobserve(techSection);

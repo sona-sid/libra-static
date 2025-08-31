@@ -2662,3 +2662,18 @@ video {
     margin-top: 4px;
     display: block;
 }
+#successMessage {
+      margin-top: 15px;
+  color: green;
+  font-weight: bold;
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+#error, .success {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.success {
+  color: green;
+}
