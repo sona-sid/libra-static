@@ -1,3 +1,89 @@
+
+// home banner animation
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded and parsed");
+  const logo = document.querySelector(".hero-logo img");
+  const heroImg = document.querySelector(".hero-image-wrapper img");
+  const heroText = document.querySelector(".hero-text");
+
+  if (logo) {
+    logo.classList.add("animate-logo");
+  }
+  if (heroImg) {
+    setTimeout(() => {
+      heroImg.classList.add("animate-hero-image");
+    }, 300); // delay for smoothness
+  }
+  if (heroText) {
+    setTimeout(() => {
+      heroText.classList.add("animate-hero-text");
+    }, 600); // delay so it comes after hero image
+  }
+});
+
+//section2 animation
+document.addEventListener("DOMContentLoaded", () => {
+  const section2 = document.querySelector(".section2");
+
+  if (section2) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section2.classList.add("animate-in");
+            observer.unobserve(section2); // run only once
+          }
+        });
+      },
+      { threshold: 0.2 } // triggers when 20% of section is visible
+    );
+
+    observer.observe(section2);
+  }
+});
+
+/* services animations */
+document.addEventListener("DOMContentLoaded", () => {
+  const servicesSection = document.querySelector(".services");
+
+  if (servicesSection) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            servicesSection.classList.add("animate-in");
+            observer.unobserve(servicesSection); // run only once
+          }
+        });
+      },
+      { threshold: 0.2 } // trigger when 20% is visible
+    );
+
+    observer.observe(servicesSection);
+  }
+});
+
+/* tech banner animation */
+document.addEventListener("DOMContentLoaded", () => {
+  const techSection = document.querySelector(".tech-section");
+  if (!techSection) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          techSection.classList.add("animate-in");
+          io.unobserve(techSection);
+        }
+      });
+    },
+    { threshold: 0.25 } // trigger when ~25% of the section is visible
+  );
+
+  io.observe(techSection);
+});
+
+
 //contact us form validation
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
@@ -284,88 +370,4 @@ const swiper = new Swiper(".printing-slider .swiper", {
       this.pagination.update();
     },
   },
-});
-
-// home banner animation
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed");
-  const logo = document.querySelector(".hero-logo img");
-  const heroImg = document.querySelector(".hero-image-wrapper img");
-  const heroText = document.querySelector(".hero-text");
-
-  if (logo) {
-    logo.classList.add("animate-logo");
-  }
-  if (heroImg) {
-    setTimeout(() => {
-      heroImg.classList.add("animate-hero-image");
-    }, 300); // delay for smoothness
-  }
-  if (heroText) {
-    setTimeout(() => {
-      heroText.classList.add("animate-hero-text");
-    }, 600); // delay so it comes after hero image
-  }
-});
-
-//section2 animation
-document.addEventListener("DOMContentLoaded", () => {
-  const section2 = document.querySelector(".section2");
-
-  if (section2) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            section2.classList.add("animate-in");
-            observer.unobserve(section2); // run only once
-          }
-        });
-      },
-      { threshold: 0.2 } // triggers when 20% of section is visible
-    );
-
-    observer.observe(section2);
-  }
-});
-
-/* services animations */
-document.addEventListener("DOMContentLoaded", () => {
-  const servicesSection = document.querySelector(".services");
-
-  if (servicesSection) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            servicesSection.classList.add("animate-in");
-            observer.unobserve(servicesSection); // run only once
-          }
-        });
-      },
-      { threshold: 0.2 } // trigger when 20% is visible
-    );
-
-    observer.observe(servicesSection);
-  }
-});
-
-/* tech banner animation */
-document.addEventListener("DOMContentLoaded", () => {
-  const techSection = document.querySelector(".tech-section");
-  if (!techSection) return;
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          techSection.classList.add("animate-in");
-          io.unobserve(techSection);
-        }
-      });
-    },
-    { threshold: 0.25 } // trigger when ~25% of the section is visible
-  );
-
-  io.observe(techSection);
 });
