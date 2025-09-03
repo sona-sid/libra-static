@@ -1,0 +1,63 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # 1. FIRST: Redirect old URLs to new clean URLs (external redirects)
+    
+    # Redirect .html URLs to their slug versions
+    RewriteCond %{THE_REQUEST} /home\.html [NC]
+    RewriteRule ^ / [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /aboutus\.html [NC]
+    RewriteRule ^ /about-us [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /contactus\.html [NC]
+    RewriteRule ^ /contact-us [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /portfolio\.html [NC]
+    RewriteRule ^ /portfolio [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /quote\.html [NC]
+    RewriteRule ^ /request-a-quote [R=301,L]
+    
+    # Redirect .php URLs to their slug versions
+    RewriteCond %{THE_REQUEST} /index\.php [NC]
+    RewriteRule ^ / [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /aboutus\.php [NC]
+    RewriteRule ^ /about-us [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /contactus\.php [NC]
+    RewriteRule ^ /contact-us [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /portfolio\.php [NC]
+    RewriteRule ^ /portfolio [R=301,L]
+    
+    RewriteCond %{THE_REQUEST} /quote\.php [NC]
+    RewriteRule ^ /request-a-quote [R=301,L]
+    
+    # 2. SECOND: Internal rewrites for clean URLs to actual PHP files
+    
+    # Map slugs to PHP files (internal rewrites)
+    RewriteRule ^about-us$ aboutus.php [L]
+    RewriteRule ^contact-us$ contactus.php [L]
+    RewriteRule ^portfolio$ portfolio.php [L]
+    RewriteRule ^request-a-quote$ quote.php [L]
+    
+    # 3. Remove .php extension from URLs (but only if not already rewritten)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteCond %{REQUEST_URI} !\.php$ [NC]
+    RewriteRule ^(.*)$ $1.php [L]
+</IfModule>
+
+# Enable PHP processing for HTML files (if needed)
+<FilesMatch "\.(html|htm)$">
+    SetHandler application-x-httpd-php
+</FilesMatch>
+
+# Set default character set
+AddDefaultCharset UTF-8
+
+# Prevent directory listing
+Options -Indexes

@@ -159,14 +159,16 @@
         </form>
       </div>
     </section>
-    <footer id="footer"></footer>
+    <footer id="footer">
+      <?php include 'footer.php'; ?>
+    </footer>
     <script>
       // Load footer.html content
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("footer").innerHTML = data;
-        });
+      // fetch("footer.html")
+      //   .then((response) => response.text())
+      //   .then((data) => {
+      //     document.getElementById("footer").innerHTML = data;
+      //   });
     </script>
     <script src="./form.js"></script>
   </body>

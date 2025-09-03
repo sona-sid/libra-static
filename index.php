@@ -325,14 +325,16 @@
         <img src="./assets/images/client12.png" alt="BCL" />
       </div>
     </section>
-    <footer id="footer"></footer>
+    <footer id="footer">
+      <?php include 'footer.php'; ?>
+    </footer>
     <script>
       // Load footer.html content
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("footer").innerHTML = data;
-        });
+      // fetch("footer.html")
+      //   .then((response) => response.text())
+      //   .then((data) => {
+      //     document.getElementById("footer").innerHTML = data;
+      //   });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./script.js"></script>

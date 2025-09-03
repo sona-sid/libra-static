@@ -16,9 +16,9 @@
         <div class="hero-nav">
           <ul class="bebas hero-nav-list">
             <li><a href="./">Home</a></li>
-            <li><a href="./aboutus.html">About Us</a></li>
-            <li><a href="./portfolio.html">Portfolio</a></li>
-            <li><a href="./contactus.html">Contact</a></li>
+            <li><a href="./about-us">About Us</a></li>
+            <li><a href="./portfolio">Portfolio</a></li>
+            <li><a href="./contact-us">Contact</a></li>
           </ul>
         </div>
 
@@ -166,14 +166,16 @@
         </div>
       </div>
     </section>
-    <footer id="footer"></footer>
+    <footer id="footer">
+      <?php include 'footer.php'; ?>
+    </footer>
     <script>
       // Load footer.html content
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("footer").innerHTML = data;
-        });
+      // fetch("footer.html")
+      //   .then((response) => response.text())
+      //   .then((data) => {
+      //     document.getElementById("footer").innerHTML = data;
+      //   });
     </script>
   </body>
 </html>
