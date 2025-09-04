@@ -53,15 +53,6 @@
         $subject = $_POST['user_subject'] ?? '';
         $message = $_POST['user_message'] ?? '';
     
-        // Prepare email
-        $to = "sonasidharthan1@gmail.com";
-        $email_subject = "New Contact Form Submission: $subject";
-        $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
-        $headers = "From: $email";
-    
-        // Send email
-        mail($to, $email_subject, $email_body, $headers);
-    
         // Save to JSON file
         $formData = [
             "firstName" => $firstName,
@@ -81,6 +72,15 @@
         }
         $existing[] = $formData;
         file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
+    
+        // Prepare email
+        $to = "sonasidharthan1@gmail.com";
+        $email_subject = "New Contact Form Submission: $subject";
+        $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
+        $headers = "From: $email";
+    
+        // Send email
+        mail($to, $email_subject, $email_body, $headers);
     
         // Success message
         echo "<script>alert('Thank you for contacting us!');</script>";
