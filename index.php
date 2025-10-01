@@ -19,10 +19,14 @@
 
         <div class="hero-nav">
           <ul class="bebas hero-nav-list">
-            <li><a href="./">Home</a></li>
+            <!-- <li><a href="./">Home</a></li>
             <li><a href="./aboutus.html">About Us</a></li>
             <li><a href="./portfolio.html">Portfolio</a></li>
-            <li><a href="./contactus.html">Contact</a></li>
+            <li><a href="./contactus.html">Contact</a></li> -->
+            <li><a href="./libra-static/">Home</a></li>
+<li><a href="aboutus.php">About Us</a></li>
+<li><a href="./libra-static/portfolio.html">Portfolio</a></li>
+<li><a href="./libra-static/contactus.html">Contact</a></li>
           </ul>
         </div>
 
