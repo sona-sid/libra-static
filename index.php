@@ -146,6 +146,7 @@
         <div class="swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service1.png"
                 alt="Presentation Folders"
@@ -155,10 +156,10 @@
               <p class="printing-text">
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
-              </p>
+              </p>            </a>
             </div>
-
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service2.png"
                 alt="Envelope Printing"
@@ -168,10 +169,10 @@
               <p class="printing-text">
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
-              </p>
+              </p>            </a>
             </div>
-
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service3.png"
                 alt="Wedding Invitations"
@@ -182,9 +183,10 @@
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
               </p>
+                          </a>
             </div>
-
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service4.png"
                 alt="Menus"
@@ -194,10 +196,10 @@
               <p class="printing-text">
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
-              </p>
+              </p>            </a>
             </div>
-
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service1.png"
                 alt="Presentation Folders"
@@ -208,9 +210,10 @@
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
               </p>
+                          </a>
             </div>
-
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service2.png"
                 alt="Envelope Printing"
@@ -221,9 +224,10 @@
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
               </p>
+                          </a>
             </div>
-
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service3.png"
                 alt="Wedding Invitations"
@@ -234,9 +238,10 @@
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
               </p>
+                          </a>
             </div>
-
             <div class="swiper-slide printing-card">
+                          <a href="./portfolio.html">
               <img
                 src="./assets/images/service4.png"
                 alt="Menus"
@@ -247,6 +252,7 @@
                 Business cards are pocket-sized cards that share your contact
                 details and brand identity.
               </p>
+           </a>
             </div>
           </div>
           <div class="swiper-pagination"></div>
