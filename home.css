@@ -1393,7 +1393,7 @@ video {
     text-align: center;
     font-size: 67px;
     font-weight: 700;
-    text-transform: capitalize;
+    text-transform: uppercase;
     --tw-text-opacity: 1;
     color: rgb(54 38 92 / var(--tw-text-opacity, 1));
 }
