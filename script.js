@@ -103,11 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (sectionTop < windowHeight - 100) {
       brainImage.classList.add("show");
-      window.removeEventListener("scroll", handleScroll); 
+      window.removeEventListener("scroll", handleScroll);
     }
   }
 
   window.addEventListener("scroll", handleScroll);
 });
-
-

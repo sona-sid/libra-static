@@ -15,7 +15,7 @@
 
         <div class="hero-nav">
           <ul class="bebas hero-nav-list">
-          <li><a href="./">Home</a></li>
+            <li><a href="./">Home</a></li>
             <li><a href="./aboutus.html">About Us</a></li>
             <li><a href="./portfolio.html">Portfolio</a></li>
             <li><a href="./contactus.html">Contact</a></li>
@@ -41,12 +41,143 @@
         </div>
       </div>
     </section>
-<section class="load">
-    <h5 class="contact-title">Coming Soon</h5>
-    <div class="loader"></div>
-</section>
+    <!-- <section class="load">
+      <h5 class="contact-title">Coming Soon</h5>
+      <div class="loader"></div>
+    </section> -->
+    <section class="container portfolio-section">
+      <div class="portfolio-filter">
+        <h3>Offset Printing</h3>
+        <h3>Digital Printing</h3>
+        <h3>Binding + Finishing</h3>
+        <h3>Packaging</h3>
+        <h3>Design + Marketing</h3>
+        <h3>Digital Media</h3>
+      </div>
+      <div class="portfolio-grid">
+        <div>
+          <img src="./assets/images/portfolio_img1.png" alt="Creative Print" />
+          <h3>Crafty Weka</h3>
+          <h6>
+            Innovative custom print solutions that blend creativity and
+            precision for unique brand expressions.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img2.png" alt="Creative Print" />
+          <h3>Magazines</h3>
+          <h6>
+            Sleek, professionally bound magazines that capture attention with
+            rich visuals and smooth readability.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img3.png" alt="Creative Print" />
+          <h3>Packaging</h3>
+          <h6>
+            Custom packaging solutions that combine aesthetic appeal with
+            functional strength.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <!-- </div>
+      <div class="portfolio-grid"> -->
+        <div>
+          <img src="./assets/images/portfolio_img4.png" alt="Creative Print" />
+          <h3>Magazines</h3>
+          <h6>
+            Sleek, professionally bound magazines that capture attention with
+            rich visuals and smooth readability.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img5.png" alt="Creative Print" />
+          <h3>Danglers</h3>
+          <h6>
+            Eye-catching danglers designed to maximize in-store visibility and
+            brand recall.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img6.png" alt="Creative Print" />
+          <h3>BOOKS</h3>
+          <h6>
+            High-quality book printing with sharp details, vibrant colors, and
+            durable finishes.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <!-- </div>
+      <div class="portfolio-grid"> -->
+        <div>
+          <img src="./assets/images/portfolio_img7.png" alt="Creative Print" />
+          <h3>Designer Paper Caps</h3>
+          <h6>
+            Stylish, customized paper caps crafted for promotions, branding, and
+            events.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img8.png" alt="Creative Print" />
+          <h3>Business Cards</h3>
+          <h6>
+            Professional business cards that leave a memorable first impression.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img9.png" alt="Creative Print" />
+          <h3>Wedding Invitation Cards</h3>
+          <h6>
+            Exquisite wedding invitations printed with fine detailing and
+            timeless elegance.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <!-- </div>
+      <div class="portfolio-grid"> -->
+        <div>
+          <img src="./assets/images/portfolio_img10.png" alt="Creative Print" />
+          <h3>Designer Paper Caps</h3>
+          <h6>
+            Stylish, customized paper caps crafted for promotions, branding, and
+            events.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img11.png" alt="Creative Print" />
+          <h3>Labels</h3>
+          <h6>
+            Premium labels with lasting print quality that stand out across
+            surfaces and industries.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+        <div>
+          <img src="./assets/images/portfolio_img12.png" alt="Creative Print" />
+          <h3>Flyers and Brochures</h3>
+          <h6>
+            Vibrant, informative marketing materials that engage and persuade
+            your audience.
+          </h6>
+          <button class="view-btn">View »</button>
+        </div>
+      </div>
+      <!-- Popup Modal -->
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <span class="close-btn">&times;</span>
+          <h2>Coming Soon...</h2>
+        </div>
+      </div>
+    </section>
 
-   
     <footer id="footer"></footer>
     <script>
       // Load footer.html content
@@ -55,6 +186,37 @@
         .then((data) => {
           document.getElementById("footer").innerHTML = data;
         });
+    </script>
+    <script>
+      // popup on pportfolio page
+      document.addEventListener("DOMContentLoaded", () => {
+        // Select elements
+        const popup = document.getElementById("popup");
+        const viewBtns = document.querySelectorAll(".view-btn");
+        const closeBtn = document.querySelector(".close-btn");
+
+        // Open popup on clicking "View"
+        viewBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            popup.style.display = "flex";
+            document.body.style.overflow = "hidden"; // disable scroll
+          });
+        });
+
+        // Close popup
+        closeBtn.addEventListener("click", () => {
+          popup.style.display = "none";
+          document.body.style.overflow = ""; // restore scroll
+        });
+
+        // Close when clicking outside the popup box
+        // window.addEventListener("click", (e) => {
+        //   if (e.target === popup) {
+        //     popup.style.display = "none";
+        //     document.body.style.overflow = ""; // restore scroll
+        //   }
+        // });
+      });
     </script>
   </body>
 </html>

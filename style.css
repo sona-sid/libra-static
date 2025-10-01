@@ -1284,7 +1284,7 @@ textarea {
 
 /* ==================================portfolio================================== */
 
-.load {
+/* .load {
     padding: 50px;
 }
 
@@ -1298,7 +1298,6 @@ textarea {
     aspect-ratio: 1;
     margin-left: auto;
     margin-right: auto;
-    /* top: 50%; */
     position: relative;
 }
 
@@ -1350,5 +1349,214 @@ textarea {
 
     100% {
         inset: 0 35px 35px 0;
+    }
+} */
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-bottom: 20px;
+}
+
+/* .portfolio-grid:not(:first-child) {
+  padding-top: 30px;
+} */
+.portfolio-grid,
+.portfolio-filter {
+    padding-inline: 20px;
+}
+
+.portfolio-grid div {
+    box-shadow: 0px 0px 10px 0px #00000026;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-grid div:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-grid h3 {
+    padding: 20px 20px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #000;
+}
+
+.portfolio-grid h6 {
+    font-weight: 500;
+    padding: 0 20px 20px 20px;
+    font-size: 20px;
+    line-height: 26px;
+    color: #97918B;
+}
+
+.portfolio-grid button {
+    font-weight: 700;
+    font-size: 12px;
+    float: right;
+    margin: 0 20px 20px 20px;
+    line-height: 29px;
+    color: #50505C;
+    border: 1px solid #50505C;
+    padding: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.portfolio-grid button:hover {
+    transform: scale(1.05);
+    background-color: #eee;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.portfolio-filter {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding-block: 60px 50px;
+    justify-self: center;
+    justify-items: center;
+    gap: 20px;
+}
+
+/* .portfolio-filter > *:nth-child(even) {
+  justify-self: end;
+} */
+.portfolio-filter h3 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 37px;
+}
+
+/* Popup background */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup box */
+.popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+    animation: zoomIn 0.3s ease;
+    position: relative;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Zoom animation */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width:1280px) {
+    .portfolio-filter h3 {
+        font-size: 18px;
+    }
+
+    .portfolio-filter {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width:1024px) {
+    .portfolio-filter h3 {
+        font-size: 18px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:768px) {
+    .portfolio-grid h3 {
+        font-size: 20px;
+    }
+
+    .portfolio-grid h6 {
+        font-size: 16px;
+    }
+
+    .portfolio-grid {
+        gap: 15px;
+    }
+
+    .portfolio-grid div {
+        margin-bottom: 0;
+    }
+
+    .portfolio-filter {
+        padding-block: 30px;
+    }
+}
+
+@media (max-width:600px) {
+    .portfolio-filter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:500px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+@media (max-width:425px) {
+    .portfolio-filter h3 {
+        font-size: 15px;
+    }
+
+    .portfolio-grid,
+    .portfolio-filter {
+        padding-inline: 10px;
+    }
+
+    .portfolio-filter {
+        gap: 10px;
+        padding-block: 15px;
+    }
+}
+
+@media (max-width:335px) {
+    .portfolio-filter h3 {
+
+        font-size: 14px;
     }
 }
