@@ -77,8 +77,7 @@
         <div style="" class="printer-box">
           <div class="printer-container">
             <!-- Left Column -->
-            <div class="left-col">
-              <!-- Printer 1 -->
+            <!-- <div class="left-col">
               <div>
                 <img
                   src="./assets/images/printer1.png"
@@ -86,12 +85,10 @@
                   class="h-full"
                 />
               </div>
-              <!-- Advanced Printing Text -->
               <div class="advanced-text">
                 <h2 class="bebas">ADVANCED<br />PRINTING TECH</h2>
               </div>
 
-              <!-- Logo -->
               <div class="logo-section2">
                 <img
                   src="./assets/images/logo_small.png"
@@ -99,10 +96,10 @@
                   class=""
                 />
               </div>
-            </div>
+            </div> -->
 
             <!-- Right Column -->
-            <div class="right-col">
+            <!-- <div class="right-col">
               <div style="height: 100%">
                 <img
                   src="./assets/images/printer2.png"
@@ -117,7 +114,18 @@
                   style="height: 100%; width: 100%"
                 />
               </div>
-            </div>
+            </div> -->
+            <video
+              width="100%"
+              height="100%"
+              controls
+              autoplay
+              muted
+              playsinline
+            >
+              <source src="./assets/Libra_designs.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
