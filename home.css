@@ -1391,8 +1391,8 @@ video {
 .section2 h3 {
     text-align: center;
     font-size: 67px;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-weight: bolder;
+    /* text-transform: uppercase; */
     --tw-text-opacity: 1;
     color: rgb(54 38 92 / var(--tw-text-opacity, 1));
 }
@@ -1595,8 +1595,8 @@ video {
 .services-heading h3 {
     text-align: center;
     font-size: 67px;
-    font-weight: 700;
-    text-transform: capitalize;
+    font-weight: bolder;
+    /* text-transform: capitalize; */
     --tw-text-opacity: 1;
     color: rgb(54 38 92 / var(--tw-text-opacity, 1));
 }

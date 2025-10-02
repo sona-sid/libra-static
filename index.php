@@ -66,7 +66,7 @@
       <div class="">
         <div style="padding-left: 20px; padding-right: 20px">
           <h4>Need Something Printed Fast</h4>
-          <h3>You’ve Found the Right Place</h3>
+          <h3>You’ve found the right place</h3>
           <h6>
             With over 24 years of industry experience, advanced printing tech &
             the latest <br />
@@ -134,7 +134,7 @@
     <section class="services">
       <div class="services-heading">
         <h4>Your Single Source of</h4>
-        <h3>Full Printing Service</h3>
+        <h3>Full printing service</h3>
         <h6>
           We specialize in high-quality
           <span>Offset & Digital printing</span>,<br />
