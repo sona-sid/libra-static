@@ -66,7 +66,7 @@
       <div class="">
         <div style="padding-left: 20px; padding-right: 20px">
           <h4>Need Something Printed Fast</h4>
-          <h3>You’ve found the right place</h3>
+          <h3>You have found the right place</h3>
           <h6>
             With over 24 years of industry experience, advanced printing tech &
             the latest <br />
