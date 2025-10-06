@@ -72,6 +72,16 @@
       </div>
     </div>
     <!-- </footer> -->
+     <!-- Fixed WhatsApp Icon -->
+<a
+  href="https://wa.me/9567933399"
+  target="_blank"
+  class="whatsapp-float"
+  aria-label="Chat on WhatsApp"
+>
+  <img src="./assets/icons/whatsapp.png" alt="WhatsApp" />
+</a>
+
     <script src="./script.js"></script>
   </body>
 </html>

@@ -1374,7 +1374,8 @@ video {
         padding-left: 10px;
         padding-right: 10px;
     }
-/* 
+
+    /* 
     .printer-container {
         padding: 9px !important;
     } */
@@ -2151,7 +2152,7 @@ video {
     }
 
     .brain-image {
-        top:-29% !important;
+        top: -29% !important;
         width: 47% !important;
     }
 
@@ -2623,9 +2624,14 @@ video {
     position: relative;
     /* avoids scrollbar jump */
 }
-.services, .services-heading, .section2 , .section2 div {
-  overflow: hidden;
+
+.services,
+.services-heading,
+.section2,
+.section2 div {
+    overflow: hidden;
 }
+
 /* Animate in (with stagger) */
 .services.animate-in .services-heading h4 {
     opacity: 1;
@@ -2654,48 +2660,48 @@ video {
 
 /* tech banner animation */
 .tech-section {
-  width: 100%;
-  padding: 50px 20px;
-  position: relative;
-  overflow: visible;
+    width: 100%;
+    padding: 50px 20px;
+    position: relative;
+    overflow: visible;
 }
 
 .tech-banner {
-  background-color: #e30613;
-  border-radius: 12px;
-  padding: 40px 60px;
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
+    background-color: #e30613;
+    border-radius: 12px;
+    padding: 40px 60px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .tech-text-wrapper {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .tech-title {
-  color: white;
-  font-size: 187px;
-  font-weight: 900;
-  margin: 0;
-  text-transform: uppercase;
-  line-height: 1.1;
+    color: white;
+    font-size: 187px;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.1;
 }
 
 .brain-image {
-  position: absolute;
-  top: 75%;
+    position: absolute;
+    top: 75%;
     left: 4%;
-  transition: transform 1s ease-out, top 1s ease-out;
-  transform: translateY(-300px); 
-  z-index: 2;
+    transition: transform 1s ease-out, top 1s ease-out;
+    transform: translateY(-300px);
+    z-index: 2;
 }
 
 .brain-image.show {
-  transform: translateY(0);
-  top: -105px; 
+    transform: translateY(0);
+    top: -105px;
 }
 
 
@@ -2704,24 +2710,46 @@ video {
     color: red;
     font-size: 14px;
     margin-top: 4px;
-    display: none; 
+    display: none;
 }
+
 .error.show {
-  display: block;  /* show only when error */
+    display: block;
+    /* show only when error */
 }
 
 #successMessage {
-      margin-top: 15px;
-  color: green;
-  font-weight: bold;
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease;
+    margin-top: 15px;
+    color: green;
+    font-weight: bold;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
-#error, .success {
-  font-size: 14px;
-  margin-top: 10px;
-}
+
+#error,
 .success {
-  color: green;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.success {
+    color: green;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.whatsapp-float img {
+    width: 55px;
+    height: 55px;
+    border-radius: 30%;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); */
+    transition: transform 0.2s ease-in-out;
+    background-color: white;
+    padding: 8px;
 }
