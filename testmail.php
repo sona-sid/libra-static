@@ -20,12 +20,15 @@ try {
     $mail->SMTPDebug = 2; 
     $mail->isSMTP();
 
-    $mail->Host       = $env['MAIL_HOST'];
+    $mail->Host       = "smtpout.secureserver.net"; // "mail.libradesign.in"; //$env['MAIL_HOST'];
     $mail->SMTPAuth   = true;
     $mail->Username   = $env['MAIL_USERNAME'];
     $mail->Password   = $env['MAIL_PASSWORD'];
-    $mail->SMTPSecure = 'tls';
-    $mail->Port       = $env['MAIL_PORT'];
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // PHPMailer::ENCRYPTION_STARTTLS; //'tls';
+    $mail->Port       = 465; // $env['MAIL_PORT'];
+
+    $mail->SMTPAutoTLS = true; // let PHPMailer start TLS automatically
+    $mail->Timeout = 30;
 
     $mail->setFrom($env['MAIL_FROM'], $env['MAIL_NAME']);
 
@@ -44,6 +47,10 @@ try {
     $mail->isHTML(true);
     $mail->Subject = 'Test Email from EC2';
     $mail->Body    = '✅ If you see this, your EC2 can send emails via GoDaddy/Office 365.';
+
+    $mail->Debugoutput = function($str, $level) {
+        echo "Debug level $level: $str\n";
+    };
 
     $mail->send();
     echo "✅ Test email sent successfully!";
