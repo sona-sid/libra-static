@@ -51,7 +51,7 @@
         </p>
       </div>
       <div class="quote-form-container">
-        <form id="quoteForm" method="POST" action="quote.php">
+        <form id="quoteForm" method="POST" action="quote.php" enctype="multipart/form-data">
           <div class="form-grid">
             <!-- Personal Information -->
             <div class="form-section">
@@ -142,7 +142,7 @@
             <div class="form-section full-width">
               <h3>Additional Information</h3>
               <div class="input-group file">
-                <input type="file" id="file" name="file" />
+                <input type="file" id="file" name="user_file" />
                 <label for="file">Upload File</label>
                 <span class="error"></span>
               </div>
@@ -194,7 +194,7 @@ $fromEmail = $env['MAIL_FROM'];
 $fromName = $env['MAIL_NAME'];
 $toEmail = 'sonasidharthan1@gmail.com'; // recipient
 
-function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $fromName, $toEmail, $subject, $body) {
+function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $fromName, $toEmail, $subject, $body, $attachmentPath = '', $attachmentName = '') {
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
@@ -214,6 +214,11 @@ function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $
         $mail->Subject = $subject;
         $mail->Body    = $body;
 
+        // Attach file if provided
+        if ($attachmentPath && file_exists($attachmentPath)) {
+            $mail->addAttachment($attachmentPath, $attachmentName);
+        }
+
         $mail->send();
         return true;
     } catch (Exception $e) {
@@ -222,12 +227,25 @@ function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data (update field names as per your quote form)
+    // Collect form data
     $name = $_POST['user_name'] ?? '';
     $email = $_POST['user_email'] ?? '';
     $phone = $_POST['user_phone'] ?? '';
     $service = $_POST['user_service'] ?? '';
     $details = $_POST['user_details'] ?? '';
+
+    // Handle file upload
+    $attachmentPath = '';
+    $attachmentName = '';
+    if (isset($_FILES['user_file']) && $_FILES['user_file']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+        $attachmentName = basename($_FILES['user_file']['name']);
+        $attachmentPath = $uploadDir . $attachmentName;
+        move_uploaded_file($_FILES['user_file']['tmp_name'], $attachmentPath);
+    }
 
     // Save to JSON file
     $formData = [
@@ -236,6 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "phone" => $phone,
         "service" => $service,
         "details" => $details,
+        "file" => $attachmentName,
         "timestamp" => date("Y-m-d H:i:s")
     ];
     $jsonFile = 'quote_submissions.json';
@@ -264,7 +283,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $fromName,
             $toEmail,
             $email_subject,
-            $email_body
+            $email_body,
+            $attachmentPath,
+            $attachmentName
         );
         if (!$sent) {
             $sent = sendMail(
@@ -277,7 +298,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $fromName,
                 $toEmail,
                 $email_subject,
-                $email_body
+                $email_body,
+                $attachmentPath,
+                $attachmentName
             );
         }
         if ($sent) {
@@ -288,3 +311,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<!-- Make sure your HTML form uses enctype="multipart/form-data" and input name="user_file" -->
