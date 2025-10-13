@@ -31,8 +31,8 @@ try {
 
     //$mail->Host       = 'smtp.secureserver.net'; // 'smtp.office365.com';
     //$mail->SMTPAuth   = true;
-    //$mail->Username   = 'info@libradesign.in';   // replace with your email
-    //$mail->Password   = '$_email@Libra25';   // replace with your password
+    //$mail->Username   = 'cs@libradesign.in';   // replace with your email
+    //$mail->Password   = '$^$^%RTYR';   // replace with your password
     //$mail->SMTPSecure = 'tls';
     //$mail->Port       = 587;
 
