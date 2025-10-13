@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
       </div>
       <div class="quote-form-container">
-        <form id="quoteForm" method="POST" action="quote.php" enctype="multipart/form-data">
+        <form id="quoteForm" method="POST" action="" enctype="multipart/form-data">
           <div class="form-grid">
             <!-- Personal Information -->
             <div class="form-section">
