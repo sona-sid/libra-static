@@ -51,7 +51,7 @@
         </p>
       </div>
       <div class="quote-form-container">
-        <form id="quoteForm">
+        <form id="quoteForm" method="POST" action="quote.php">
           <div class="form-grid">
             <!-- Personal Information -->
             <div class="form-section">
@@ -60,6 +60,7 @@
                 <input
                   type="text"
                   id="fullname"
+                  name="user_name"
                   placeholder="John Doe"
                   required
                 />
@@ -70,6 +71,7 @@
                 <input
                   type="email"
                   id="email"
+                  name="user_email"
                   placeholder="your_email@example.com"
                   required
                 />
@@ -80,6 +82,7 @@
                 <input
                   type="tel"
                   id="phone"
+                  name="user_phone"
                   placeholder="( _ ) ___ - ____"
                   required
                 />
@@ -97,7 +100,7 @@
             <div class="form-section">
               <h3>Project Information</h3>
               <div class="input-group">
-                <select id="service" name="service">
+                <select id="service" name="user_service">
                   <option value="">Select Service</option>
                   <option value="flyers">Flyers</option>
                   <option value="brochures">Brochures</option>
@@ -108,11 +111,11 @@
               </div>
               <div class="input-group">
                 <label for="quantity">Quantity Needed</label>
-                <input type="number" id="quantity" placeholder="0" required />
+                <input type="number" id="quantity" name="quantity" placeholder="0" required />
                 <span class="error"></span>
               </div>
               <div class="input-group">
-                <select id="material">
+                <select id="material" name="material">
                   <option value="glossy">Glossy</option>
                   <option value="matte">Matte</option>
                   <option value="textured">Textured</option>
@@ -124,6 +127,7 @@
                 <input
                   type="text"
                   id="size"
+                  name="size"
                   required
                   placeholder="e.g. A4, A5, Custom"
                 />
@@ -138,12 +142,12 @@
             <div class="form-section full-width">
               <h3>Additional Information</h3>
               <div class="input-group file">
-                <input type="file" id="file" />
+                <input type="file" id="file" name="file" />
                 <label for="file">Upload File</label>
                 <span class="error"></span>
               </div>
               <div class="input-group">
-                <textarea id="notes"></textarea>
+                <textarea id="notes" name="user_details"></textarea>
                 <label for="notes">Additional Notes</label>
                 <span class="error"></span>
               </div>
@@ -173,3 +177,114 @@
     <script src="./form.js"></script>
   </body>
 </html>
+
+<?php
+// filepath: c:\xampp\htdocs\php\quote.php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
+// Load credentials from .env
+$env = parse_ini_file(__DIR__ . '/.env', false, INI_SCANNER_RAW);
+
+$username = $env['MAIL_USERNAME'];
+$password = $env['MAIL_PASSWORD'];
+$fromEmail = $env['MAIL_FROM'];
+$fromName = $env['MAIL_NAME'];
+$toEmail = 'sonasidharthan1@gmail.com'; // recipient
+
+function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $fromName, $toEmail, $subject, $body) {
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host       = $host;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $username;
+        $mail->Password   = $password;
+        $mail->SMTPSecure = $encryption;
+        $mail->Port       = $port;
+        $mail->SMTPAutoTLS = true;
+        $mail->Timeout    = 30;
+
+        $mail->setFrom($fromEmail, $fromName);
+        $mail->addAddress($toEmail);
+
+        $mail->isHTML(false);
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect form data (update field names as per your quote form)
+    $name = $_POST['user_name'] ?? '';
+    $email = $_POST['user_email'] ?? '';
+    $phone = $_POST['user_phone'] ?? '';
+    $service = $_POST['user_service'] ?? '';
+    $details = $_POST['user_details'] ?? '';
+
+    // Save to JSON file
+    $formData = [
+        "name" => $name,
+        "email" => $email,
+        "phone" => $phone,
+        "service" => $service,
+        "details" => $details,
+        "timestamp" => date("Y-m-d H:i:s")
+    ];
+    $jsonFile = 'quote_submissions.json';
+    if (file_exists($jsonFile)) {
+        $existing = json_decode(file_get_contents($jsonFile), true);
+        if (!is_array($existing)) $existing = [];
+    } else {
+        $existing = [];
+    }
+    $existing[] = $formData;
+    file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
+
+    // if all inputs are present, send email
+    if ($name && $email && $phone && $service && $details) {
+        $email_subject = "New Quote Request: $service";
+        $email_body = "Name: $name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$details";
+
+        // Try SSL 465 first, fallback to TLS 587
+        $sent = sendMail(
+            'smtpout.secureserver.net',
+            465,
+            PHPMailer::ENCRYPTION_SMTPS,
+            $username,
+            $password,
+            $fromEmail,
+            $fromName,
+            $toEmail,
+            $email_subject,
+            $email_body
+        );
+        if (!$sent) {
+            $sent = sendMail(
+                'smtpout.secureserver.net',
+                587,
+                PHPMailer::ENCRYPTION_STARTTLS,
+                $username,
+                $password,
+                $fromEmail,
+                $fromName,
+                $toEmail,
+                $email_subject,
+                $email_body
+            );
+        }
+        if ($sent) {
+            echo "<script>alert('Thank you for your quote request!');</script>";
+        } else {
+            echo "<script>alert('Sorry, we could not send your request. Please try again later.');</script>";
+        }
+    }
+}
+?>
