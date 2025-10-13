@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . '/functions.php';
 
@@ -6,11 +5,14 @@ $statusMsg = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
-    $name = $_POST['user_name'] ?? '';
-    $email = $_POST['user_email'] ?? '';
-    $phone = $_POST['user_phone'] ?? '';
-    $service = $_POST['user_service'] ?? '';
-    $details = $_POST['user_details'] ?? '';
+    $name     = $_POST['user_name'] ?? '';
+    $email    = $_POST['user_email'] ?? '';
+    $phone    = $_POST['user_phone'] ?? '';
+    $service  = $_POST['user_service'] ?? '';
+    $details  = $_POST['user_details'] ?? '';
+    $quantity = $_POST['quantity'] ?? '';
+    $material = $_POST['material'] ?? '';
+    $size     = $_POST['size'] ?? '';
 
     // Handle file upload
     $attachmentPath = '';
@@ -32,6 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "phone" => $phone,
         "service" => $service,
         "details" => $details,
+        "quantity" => $quantity,
+        "material" => $material,
+        "size" => $size,
         "file" => $attachmentName,
         "timestamp" => date("Y-m-d H:i:s")
     ];
@@ -45,18 +50,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $existing[] = $formData;
     file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
 
-    // Send admin notification
+    // Send admin notification (with HTML template and attachment)
     if ($name && $email && $phone && $service && $details) {
-        $email_subject = "New Quote Request: $service";
-        $email_body = "Name: $name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$details";
+        $admin_subject = "New Quote Request: $service";
+        $admin_message = "
+            <strong>Name:</strong> $name<br>
+            <strong>Email:</strong> $email<br>
+            <strong>Phone:</strong> $phone<br>
+            <strong>Service:</strong> $service<br>
+            <strong>Quantity:</strong> $quantity<br>
+            <strong>Material:</strong> $material<br>
+            <strong>Size:</strong> $size<br>
+            <strong>Details:</strong> $details
+        ";
+        $admin_template = getEmailTemplate($name, $admin_message);
         $sent = sendMailtoAdmin(
-            $email_subject,
-            $email_body,
+            $admin_subject,
+            $admin_template,
             $attachmentPath,
             $attachmentName
         );
 
-        // Send user acknowledgement
+        // Send user acknowledgement (no attachment, HTML template)
         $userMessage = "Thank you for contacting Libra Design! We have received your quote request and will get back to you soon.";
         $userTemplate = getEmailTemplate($name, $userMessage);
         $userSent = sendMail(
