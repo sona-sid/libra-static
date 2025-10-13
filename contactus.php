@@ -43,8 +43,48 @@
     </section>
 
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
+    require 'vendor/autoload.php';
+
+    // Load credentials from .env
+    $env = parse_ini_file(__DIR__ . '/.env', false, INI_SCANNER_RAW);
+
+    $username = $env['MAIL_USERNAME'];
+    $password = $env['MAIL_PASSWORD'];
+    $fromEmail = $env['MAIL_FROM'];
+    $fromName = $env['MAIL_NAME'];
+    $toEmail = 'sonasidharthan1@gmail.com'; // recipient
+
+    function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $fromName, $toEmail, $subject, $body) {
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host       = $host;
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $username;
+            $mail->Password   = $password;
+            $mail->SMTPSecure = $encryption;
+            $mail->Port       = $port;
+            $mail->SMTPAutoTLS = true;
+            $mail->Timeout    = 30;
+
+            $mail->setFrom($fromEmail, $fromName);
+            $mail->addAddress($toEmail);
+
+            $mail->isHTML(false);
+            $mail->Subject = $subject;
+            $mail->Body    = $body;
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Collect form data
         $firstName = $_POST['user_firstname'] ?? '';
         $lastName = $_POST['user_lastname'] ?? '';
@@ -52,7 +92,7 @@
         $phone = $_POST['user_phone'] ?? '';
         $subject = $_POST['user_subject'] ?? '';
         $message = $_POST['user_message'] ?? '';
-    
+
         // Save to JSON file
         $formData = [
             "firstName" => $firstName,
@@ -72,18 +112,45 @@
         }
         $existing[] = $formData;
         file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
-    
-        // Prepare email
-        $to = "sonasidharthan1@gmail.com";
-        $email_subject = "New Contact Form Submission: $subject";
-        $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
-        $headers = "From: $email";
-    
-        // Send email
-        mail($to, $email_subject, $email_body, $headers);
-    
-        // Success message
-        echo "<script>alert('Thank you for contacting us!');</script>";
+
+        // if all inputs are present, send email
+        if ($firstName && $lastName && $email && $phone && $subject && $message) {
+            $email_subject = "New Contact Form Submission: $subject";
+            $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
+
+            // Try SSL 465 first, fallback to TLS 587
+            $sent = sendMail(
+                'smtpout.secureserver.net',
+                465,
+                PHPMailer::ENCRYPTION_SMTPS,
+                $username,
+                $password,
+                $fromEmail,
+                $fromName,
+                $toEmail,
+                $email_subject,
+                $email_body
+            );
+            if (!$sent) {
+                $sent = sendMail(
+                    'smtpout.secureserver.net',
+                    587,
+                    PHPMailer::ENCRYPTION_STARTTLS,
+                    $username,
+                    $password,
+                    $fromEmail,
+                    $fromName,
+                    $toEmail,
+                    $email_subject,
+                    $email_body
+                );
+            }
+            if ($sent) {
+                echo "<script>alert('Thank you for contacting us!');</script>";
+            } else {
+                echo "<script>alert('Sorry, we could not send your message. Please try again later.');</script>";
+            }
+        }
     }
     ?>
 
@@ -184,22 +251,22 @@
               <label>Select Subject?</label>
               <div class="radio-group">
                 <label>
-                  <input type="radio" name="subject" value="General Inquiry"  checked />
+                  <input type="radio" name="user_subject" value="General Inquiry"  checked />
                   <span>General Inquiry</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="subject" value="Print Inquiry" />
+                  <input type="radio" name="user_subject" value="Print Inquiry" />
                   <span>Print Inquiry</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="subject" value="Design Inquiry" />
+                  <input type="radio" name="user_subject" value="Design Inquiry" />
                   <span>Design Inquiry</span>
                 </label>
 
                 <label>
-                  <input type="radio" name="subject" value="Branding Inquiry" />
+                  <input type="radio" name="user_subject" value="Branding Inquiry" />
                   <span>Branding Inquiry</span>
                 </label>
               </div>
