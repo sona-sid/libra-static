@@ -1,3 +1,81 @@
+
+<?php
+require_once __DIR__ . '/functions.php';
+
+$statusMsg = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect form data
+    $name = $_POST['user_name'] ?? '';
+    $email = $_POST['user_email'] ?? '';
+    $phone = $_POST['user_phone'] ?? '';
+    $service = $_POST['user_service'] ?? '';
+    $details = $_POST['user_details'] ?? '';
+
+    // Handle file upload
+    $attachmentPath = '';
+    $attachmentName = '';
+    if (isset($_FILES['user_file']) && $_FILES['user_file']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+        $attachmentName = basename($_FILES['user_file']['name']);
+        $attachmentPath = $uploadDir . $attachmentName;
+        move_uploaded_file($_FILES['user_file']['tmp_name'], $attachmentPath);
+    }
+
+    // Save to JSON file
+    $formData = [
+        "name" => $name,
+        "email" => $email,
+        "phone" => $phone,
+        "service" => $service,
+        "details" => $details,
+        "file" => $attachmentName,
+        "timestamp" => date("Y-m-d H:i:s")
+    ];
+    $jsonFile = 'quote_submissions.json';
+    if (file_exists($jsonFile)) {
+        $existing = json_decode(file_get_contents($jsonFile), true);
+        if (!is_array($existing)) $existing = [];
+    } else {
+        $existing = [];
+    }
+    $existing[] = $formData;
+    file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
+
+    // Send admin notification
+    if ($name && $email && $phone && $service && $details) {
+        $email_subject = "New Quote Request: $service";
+        $email_body = "Name: $name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$details";
+        $sent = sendMailtoAdmin(
+            $email_subject,
+            $email_body,
+            $attachmentPath,
+            $attachmentName
+        );
+
+        // Send user acknowledgement
+        $userMessage = "Thank you for contacting Libra Design! We have received your quote request and will get back to you soon.";
+        $userTemplate = getEmailTemplate($name, $userMessage);
+        $userSent = sendMail(
+            $email,
+            "We received your quote request!",
+            $userTemplate,
+            '',
+            '',
+            true
+        );
+
+        if ($sent && $userSent) {
+            $statusMsg = '<div class="success-msg">Thank you for your quote request!</div>';
+        } else {
+            $statusMsg = '<div class="error-msg">Sorry, we could not send your request. Please try again later.</div>';
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -161,6 +239,12 @@
             ✅ Thank you! Your request has been submitted. Our team will get back to you soon!
           </div>
         </form>
+        <?php
+        // Show status message below the form
+        if ($statusMsg) {
+            echo $statusMsg;
+        }
+        ?>
       </div>
     </section>
     <footer id="footer">
@@ -177,83 +261,3 @@
     <script src="./form.js"></script>
   </body>
 </html>
-
-<?php
-// filepath: c:\xampp\htdocs\php\quote.php
-require_once __DIR__ . '/functions.php';
-
-$adminEmail = 'sonasidharthan1@gmail.com';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data
-    $name = $_POST['user_name'] ?? '';
-    $email = $_POST['user_email'] ?? '';
-    $phone = $_POST['user_phone'] ?? '';
-    $service = $_POST['user_service'] ?? '';
-    $details = $_POST['user_details'] ?? '';
-
-    // Handle file upload
-    $attachmentPath = '';
-    $attachmentName = '';
-    if (isset($_FILES['user_file']) && $_FILES['user_file']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/uploads/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-        $attachmentName = basename($_FILES['user_file']['name']);
-        $attachmentPath = $uploadDir . $attachmentName;
-        move_uploaded_file($_FILES['user_file']['tmp_name'], $attachmentPath);
-    }
-
-    // Save to JSON file
-    $formData = [
-        "name" => $name,
-        "email" => $email,
-        "phone" => $phone,
-        "service" => $service,
-        "details" => $details,
-        "file" => $attachmentName,
-        "timestamp" => date("Y-m-d H:i:s")
-    ];
-    $jsonFile = 'quote_submissions.json';
-    if (file_exists($jsonFile)) {
-        $existing = json_decode(file_get_contents($jsonFile), true);
-        if (!is_array($existing)) $existing = [];
-    } else {
-        $existing = [];
-    }
-    $existing[] = $formData;
-    file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
-
-    // Send admin notification
-    if ($name && $email && $phone && $service && $details) {
-        $email_subject = "New Quote Request: $service";
-        $email_body = "Name: $name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$details";
-        $sent = sendMailtoAdmin(
-            $email_subject,
-            $email_body,
-            $attachmentPath,
-            $attachmentName
-        );
-
-        // Send user acknowledgement
-        $userMessage = "Thank you for contacting Libra Design! We have received your quote request and will get back to you soon.";
-        $userTemplate = getEmailTemplate($name, $userMessage);
-        $userSent = sendMail(
-            $email,
-            "We received your quote request!",
-            $userTemplate,
-            '',
-            '',
-            true
-        );
-
-        if ($sent && $userSent) {
-            echo "<script>alert('Thank you for your quote request!');</script>";
-        } else {
-            echo "<script>alert('Sorry, we could not send your request. Please try again later.');</script>";
-        }
-    }
-}
-?>
-<!-- Make sure your HTML form uses enctype="multipart/form-data" and input name="user_file" -->
