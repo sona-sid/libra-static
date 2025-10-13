@@ -180,51 +180,9 @@
 
 <?php
 // filepath: c:\xampp\htdocs\php\quote.php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+require_once __DIR__ . '/functions.php';
 
-require 'vendor/autoload.php';
-
-// Load credentials from .env
-$env = parse_ini_file(__DIR__ . '/.env', false, INI_SCANNER_RAW);
-
-$username = $env['MAIL_USERNAME'];
-$password = $env['MAIL_PASSWORD'];
-$fromEmail = $env['MAIL_FROM'];
-$fromName = $env['MAIL_NAME'];
-$toEmail = 'sonasidharthan1@gmail.com'; // recipient
-
-function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $fromName, $toEmail, $subject, $body, $attachmentPath = '', $attachmentName = '') {
-    $mail = new PHPMailer(true);
-    try {
-        $mail->isSMTP();
-        $mail->Host       = $host;
-        $mail->SMTPAuth   = true;
-        $mail->Username   = $username;
-        $mail->Password   = $password;
-        $mail->SMTPSecure = $encryption;
-        $mail->Port       = $port;
-        $mail->SMTPAutoTLS = true;
-        $mail->Timeout    = 30;
-
-        $mail->setFrom($fromEmail, $fromName);
-        $mail->addAddress($toEmail);
-
-        $mail->isHTML(false);
-        $mail->Subject = $subject;
-        $mail->Body    = $body;
-
-        // Attach file if provided
-        if ($attachmentPath && file_exists($attachmentPath)) {
-            $mail->addAttachment($attachmentPath, $attachmentName);
-        }
-
-        $mail->send();
-        return true;
-    } catch (Exception $e) {
-        return false;
-    }
-}
+$adminEmail = 'sonasidharthan1@gmail.com';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
@@ -267,43 +225,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $existing[] = $formData;
     file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
 
-    // if all inputs are present, send email
+    // Send admin notification
     if ($name && $email && $phone && $service && $details) {
         $email_subject = "New Quote Request: $service";
         $email_body = "Name: $name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$details";
-
-        // Try SSL 465 first, fallback to TLS 587
         $sent = sendMail(
-            'smtpout.secureserver.net',
-            465,
-            PHPMailer::ENCRYPTION_SMTPS,
-            $username,
-            $password,
-            $fromEmail,
-            $fromName,
-            $toEmail,
+            $adminEmail,
             $email_subject,
             $email_body,
             $attachmentPath,
-            $attachmentName
+            $attachmentName,
+            false
         );
-        if (!$sent) {
-            $sent = sendMail(
-                'smtpout.secureserver.net',
-                587,
-                PHPMailer::ENCRYPTION_STARTTLS,
-                $username,
-                $password,
-                $fromEmail,
-                $fromName,
-                $toEmail,
-                $email_subject,
-                $email_body,
-                $attachmentPath,
-                $attachmentName
-            );
-        }
-        if ($sent) {
+
+        // Send user acknowledgement
+        $userMessage = "Thank you for contacting Libra Design! We have received your quote request and will get back to you soon.";
+        $userTemplate = getEmailTemplate($name, $userMessage);
+        $userSent = sendMail(
+            $email,
+            "We received your quote request!",
+            $userTemplate,
+            '',
+            '',
+            true
+        );
+
+        if ($sent && $userSent) {
             echo "<script>alert('Thank you for your quote request!');</script>";
         } else {
             echo "<script>alert('Sorry, we could not send your request. Please try again later.');</script>";

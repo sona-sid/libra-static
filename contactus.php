@@ -47,42 +47,10 @@
     use PHPMailer\PHPMailer\Exception;
 
     require 'vendor/autoload.php';
+    require_once __DIR__ . '/functions.php';
 
-    // Load credentials from .env
-    $env = parse_ini_file(__DIR__ . '/.env', false, INI_SCANNER_RAW);
-
-    $username = $env['MAIL_USERNAME'];
-    $password = $env['MAIL_PASSWORD'];
-    $fromEmail = $env['MAIL_FROM'];
-    $fromName = $env['MAIL_NAME'];
-    $toEmail = 'sonasidharthan1@gmail.com'; // recipient
-
-    function sendMail($host, $port, $encryption, $username, $password, $fromEmail, $fromName, $toEmail, $subject, $body) {
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->Host       = $host;
-            $mail->SMTPAuth   = true;
-            $mail->Username   = $username;
-            $mail->Password   = $password;
-            $mail->SMTPSecure = $encryption;
-            $mail->Port       = $port;
-            $mail->SMTPAutoTLS = true;
-            $mail->Timeout    = 30;
-
-            $mail->setFrom($fromEmail, $fromName);
-            $mail->addAddress($toEmail);
-
-            $mail->isHTML(false);
-            $mail->Subject = $subject;
-            $mail->Body    = $body;
-
-            $mail->send();
-            return true;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
+    $adminEmail = 'sonasidharthan1@gmail.com';
+    $statusMsg = '';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Collect form data
@@ -113,42 +81,35 @@
         $existing[] = $formData;
         file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
 
-        // if all inputs are present, send email
+        // Send admin notification
         if ($firstName && $lastName && $email && $phone && $subject && $message) {
             $email_subject = "New Contact Form Submission: $subject";
             $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
-
-            // Try SSL 465 first, fallback to TLS 587
             $sent = sendMail(
-                'smtpout.secureserver.net',
-                465,
-                PHPMailer::ENCRYPTION_SMTPS,
-                $username,
-                $password,
-                $fromEmail,
-                $fromName,
-                $toEmail,
+                $adminEmail,
                 $email_subject,
-                $email_body
+                $email_body,
+                '',
+                '',
+                false
             );
-            if (!$sent) {
-                $sent = sendMail(
-                    'smtpout.secureserver.net',
-                    587,
-                    PHPMailer::ENCRYPTION_STARTTLS,
-                    $username,
-                    $password,
-                    $fromEmail,
-                    $fromName,
-                    $toEmail,
-                    $email_subject,
-                    $email_body
-                );
-            }
-            if ($sent) {
-                echo "<script>alert('Thank you for contacting us!');</script>";
+
+            // Send user acknowledgement
+            $userMessage = "Thank you for contacting Libra Design! We have received your message and will get back to you soon.";
+            $userTemplate = getEmailTemplate($firstName . ' ' . $lastName, $userMessage);
+            $userSent = sendMail(
+                $email,
+                "We received your message!",
+                $userTemplate,
+                '',
+                '',
+                true
+            );
+
+            if ($sent && $userSent) {
+                $statusMsg = '<div class="success-msg">Thank you for contacting us!</div>';
             } else {
-                echo "<script>alert('Sorry, we could not send your message. Please try again later.');</script>";
+                $statusMsg = '<div class="error-msg">Sorry, we could not send your message. Please try again later.</div>';
             }
         }
     }
@@ -283,6 +244,13 @@
               <img src="./assets/images/letter_send.png" />
             </div>
           </form>
+
+          <?php
+          // Show status message below the form
+          if ($statusMsg) {
+              echo $statusMsg;
+          }
+          ?>
         </div>
       </div>
     </section>
@@ -440,5 +408,9 @@ $(function() {
 });
 </script>
     <script src="./script.js" ></script>
+    <style>
+    .success-msg { color: green; margin-top: 16px; }
+    .error-msg { color: red; margin-top: 16px; }
+    </style>
   </body>
 </html>
