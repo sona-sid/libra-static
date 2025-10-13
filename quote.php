@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <strong>Size:</strong> $size<br>
             <strong>Details:</strong> $details
         ";
-        $admin_template = getEmailTemplate($name, $admin_message);
+        $admin_template = getEmailTemplate('Admin', $admin_message);
         $sent = sendMailtoAdmin(
             $admin_subject,
             $admin_template,

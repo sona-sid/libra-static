@@ -43,13 +43,8 @@
     </section>
 
     <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
     require 'vendor/autoload.php';
     require_once __DIR__ . '/functions.php';
-
-    $adminEmail = 'sonasidharthan1@gmail.com';
     $statusMsg = '';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -81,24 +76,23 @@
         $existing[] = $formData;
         file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT));
 
-        // Send admin notification
+        // Send admin notification using HTML template
         if ($firstName && $lastName && $email && $phone && $subject && $message) {
-            $email_subject = "New Contact Form Submission: $subject";
-            $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
+            $admin_subject = "New Contact Form Submission: $subject";
+            $admin_message = "
+                <strong>Name:</strong> $firstName $lastName<br>
+                <strong>Email:</strong> $email<br>
+                <strong>Phone:</strong> $phone<br>
+                <strong>Subject:</strong> $subject<br>
+                <strong>Message:</strong> $message
+            ";
+            $admin_template = getEmailTemplate('Admin', $admin_message);
             $sent = sendMailtoAdmin(
-                $email_subject,
-                $email_body,
-                '',
-                '',
-                false
+                $admin_subject,
+                $admin_template
             );
-            if ($sent) {
-                $statusMsg = '<div class="success-msg">Thank you for contacting us!</div>';
-            } else {
-                $statusMsg = '<div class="error-msg">Sorry, we could not send your message. Please try again later.</div>';
-            }
 
-            // Send user acknowledgement
+            // Send user acknowledgement (HTML template)
             $userMessage = "Thank you for contacting Libra Design! We have received your message and will get back to you soon.";
             $userTemplate = getEmailTemplate($firstName . ' ' . $lastName, $userMessage);
             $userSent = sendMail(
