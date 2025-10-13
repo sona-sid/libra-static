@@ -85,21 +85,25 @@
         if ($firstName && $lastName && $email && $phone && $subject && $message) {
             $email_subject = "New Contact Form Submission: $subject";
             $email_body = "Name: $firstName $lastName\nEmail: $email\nPhone: $phone\nSubject: $subject\nMessage:\n$message";
-            $sent = sendMail(
-                $adminEmail,
+            $sent = sendMailtoAdmin(
                 $email_subject,
                 $email_body,
                 '',
                 '',
                 false
             );
+            if ($sent) {
+                $statusMsg = '<div class="success-msg">Thank you for contacting us!</div>';
+            } else {
+                $statusMsg = '<div class="error-msg">Sorry, we could not send your message. Please try again later.</div>';
+            }
 
             // Send user acknowledgement
             $userMessage = "Thank you for contacting Libra Design! We have received your message and will get back to you soon.";
             $userTemplate = getEmailTemplate($firstName . ' ' . $lastName, $userMessage);
             $userSent = sendMail(
                 $email,
-                "We received your message!",
+                "Thank you for contacting us! We received your message.",
                 $userTemplate,
                 '',
                 '',

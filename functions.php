@@ -73,6 +73,12 @@ function sendMail($toEmail, $subject, $body, $attachmentPath = '', $attachmentNa
     }
 }
 
+function sendMailtoAdmin($subject, $body, $attachmentPath = '', $attachmentName = '') {
+    $env        = getMailEnv();
+    $adminEmail = isset($env['ADMIN_MAIL']) ? $env['ADMIN_MAIL'] : $env['MAIL_FROM'];
+    return sendMail($adminEmail, $subject, $body, $attachmentPath, $attachmentName);
+}
+
 // Email template with logo
 function getEmailTemplate($userName, $message) {
     $logoUrl = 'https://libradesign.in/assets/images/logo_small.png'; // Use absolute URL for emails

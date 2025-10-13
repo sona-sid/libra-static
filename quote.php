@@ -229,13 +229,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($name && $email && $phone && $service && $details) {
         $email_subject = "New Quote Request: $service";
         $email_body = "Name: $name\nEmail: $email\nPhone: $phone\nService: $service\nDetails:\n$details";
-        $sent = sendMail(
-            $adminEmail,
+        $sent = sendMailtoAdmin(
             $email_subject,
             $email_body,
             $attachmentPath,
-            $attachmentName,
-            false
+            $attachmentName
         );
 
         // Send user acknowledgement
