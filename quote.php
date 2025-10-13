@@ -232,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
           </div>
           <div class="form-actions">
-            <button type="submit">Submit Request</button>
+            <button type="submit" class="quote-submit">Submit Request</button>
           </div>
           <!-- Success message -->
           <div id="successMessage">
@@ -251,12 +251,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <?php include 'footer.php'; ?>
     </footer>
     <script>
-      // Load footer.html content
-      // fetch("footer.html")
-      //   .then((response) => response.text())
-      //   .then((data) => {
-      //     document.getElementById("footer").innerHTML = data;
-      //   });
+      // jquery fn to submit form after validation
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("quoteForm");
+        const successMessage = document.getElementById("successMessage");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault(); // prevent default form submission
+
+          // Simple validation (you can expand this as needed)
+          let valid = true;
+          form.querySelectorAll("input[required], select[required]").forEach((input) => {
+            if (!input.value.trim()) {
+              valid = false;
+              input.nextElementSibling.textContent = "This field is required.";
+            } else {
+              input.nextElementSibling.textContent = "";
+            }
+          });
+
+          if (valid) {
+            form.submit(); // submit the form if valid
+            successMessage.style.display = "block"; // show success message
+            form.reset(); // reset the form
+          }
+        });
+      });
+
     </script>
     <script src="./form.js"></script>
   </body>
